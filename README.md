@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kousek Bali
 
-## Getting Started
+E-shop [kousekbali.cz](https://kousekbali.cz) — Jan Kielkovský, IČO 22253327.
 
-First, run the development server:
+Kousek Bali prodává ceremoniální kakao a doplňkové produkty z Bali (Indonésie).
+Kakao je jemné, s "laskavou esencí", pěstované v souladu s ekologickými
+hodnotami — to je hlavní odlišení od konkurence (Cacayo, Kuskakao, Madam
+Cacao).
+
+Cíl webu: prodávat online + budovat důvěryhodnou, osobní značku. Primární
+konverze je objednávka kakaa (případně navázání spolupráce — prodej kakaa v
+kavárnách).
+
+Cílová skupina: muži i ženy cca 25–45 let, otevření, alternativně smýšlející,
+po celé ČR a SR. Přichází hlavně z mobilu, přes Instagram a osobní
+doporučení. Rozhodují se často na základě chuti/kvality a příběhu za
+produktem, ne primárně podle ceny.
+
+## Tech stack
+
+- **Next.js** (App Router, TypeScript, Tailwind CSS v4) — frontend, statický build
+- **Cloudflare Pages** — hosting, deploy automaticky při push na `main`
+- **Supabase** — databáze a backendová logika (edge functions: vytvoření
+  objednávky + variabilní symbol, kontrola platby na bance)
+- **Resend** — transakční e-maily (potvrzení objednávky, potvrzení platby)
+
+## Platební tok (shrnutí)
+
+1. Zákazník vybere produkt(y), vyplní checkout (e-mail, doprava, poznámka)
+2. Supabase edge function vytvoří objednávku a vygeneruje unikátní variabilní
+   symbol (VS)
+3. Frontend zobrazí QR platbu (formát SPD) s tímto VS + e-mail s potvrzením
+   objednávky (Resend)
+4. Naplánovaná úloha kontroluje bankovní účet (API banky, ideálně Fio) a
+   páruje příchozí platby podle VS
+5. Po spárování se objednávka označí jako zaplacená a odejde druhý e-mail
+   (potvrzení platby + info o odeslání)
+
+Doprava: Zásilkovna, Balíkovna, osobní předání v Opavě (individuální
+domluva).
+
+## Struktura projektu
+
+```
+src/
+├── app/            # stránky (App Router)
+│   ├── eshop/      # výpis produktů, detail, košík/checkout
+│   ├── o-nas/
+│   ├── galerie/
+│   ├── faq/
+│   ├── navod/
+│   └── spoluprace/ # poptávkový formulář pro kavárny/prodejny
+├── components/
+│   ├── ui/
+│   └── layout/
+├── lib/            # supabase klient, generování QR platby, typy
+└── styles/
+supabase/
+├── functions/      # create-order, check-payment (edge functions)
+└── migrations/      # SQL schéma
+```
+
+## Vývoj
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Otevři [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stav projektu
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Aktuálně: kostra projektu + design systém (barvy, typografie) a homepage.
+Následuje: e-shop (výpis + detail produktu), checkout s QR platbou, napojení
+Supabase a Cloudflare Pages.

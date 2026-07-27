@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/*
+ * Barevná paleta vychází z klientova loga (tyrkysová) a z dotazníku
+ * (hnědá / tyrkysová / bílá) — viz CLAUDE.md pro kontext značky.
+ * Tailwind v4 čte tokeny z @theme a generuje z nich utility třídy
+ * (např. --color-turquoise -> bg-turquoise, text-turquoise, border-turquoise).
+ * Barvy se ladí jen tady, ne natvrdo v komponentách.
+ */
+:root {
+  /* tmavě zelená až černozelená — hlavní plocha webu */
+  --color-forest-950: #0f1a12;
+  --color-forest-900: #16241a;
+  --color-forest-800: #1e2f22;
+  --color-forest-700: #28402f;
+
+  /* tyrkysová z loga — primární brand akcent */
+  --color-turquoise: #20a9b3;
+  --color-turquoise-light: #4bc4cd;
+  --color-turquoise-dark: #17828a;
+
+  /* teplá terakota — sekundární akcent inspirovaný obaly a přírodou */
+  --color-terracotta: #8a5a3b;
+  --color-terracotta-light: #a97650;
+
+  /* krémově bílá — text na tmavém pozadí, nikdy čistě bílá */
+  --color-cream: #f5f1e8;
+  --color-cream-muted: #cdc4b1;
+}
+
+@theme inline {
+  --color-forest-950: var(--color-forest-950);
+  --color-forest-900: var(--color-forest-900);
+  --color-forest-800: var(--color-forest-800);
+  --color-forest-700: var(--color-forest-700);
+
+  --color-turquoise: var(--color-turquoise);
+  --color-turquoise-light: var(--color-turquoise-light);
+  --color-turquoise-dark: var(--color-turquoise-dark);
+
+  --color-terracotta: var(--color-terracotta);
+  --color-terracotta-light: var(--color-terracotta-light);
+
+  --color-cream: var(--color-cream);
+  --color-cream-muted: var(--color-cream-muted);
+
+  /* typografie: elegantní serif na nadpisy, prostrkaný sans na labely */
+  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--color-forest-950);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+}
+
+/* jemné prostrkání pro drobné verzálkové labely (menu, štítky sekcí) */
+.tracked-label {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}

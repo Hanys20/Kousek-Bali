@@ -34,9 +34,9 @@ export function OriginStory() {
 
           <div className="lg:pt-4">
             <SectionLabel>Od farmářů až k vám</SectionLabel>
-            <h2 className="mt-5 font-brand text-3xl font-bold uppercase leading-[1.15] text-cream sm:text-5xl">
-              Od balijských farmářů
-              <span className="block">až k vám</span>
+            <h2 className="mt-5 font-brand text-3xl uppercase leading-[1.15] text-cream sm:text-5xl">
+              <span className="font-bold">Od balijských farmářů</span>
+              <span className="block font-light">až k vám</span>
             </h2>
             <p className="mt-6 max-w-lg leading-relaxed text-cream-muted">
               Kakao dovážíme od balijské čokoládovny <strong className="text-cream">Ubud Raw</strong>,

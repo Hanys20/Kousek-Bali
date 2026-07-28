@@ -20,8 +20,9 @@ export default function ONasPage() {
       <main className="flex-1">
         <div className="mx-auto max-w-3xl px-5 pb-4 pt-40 text-center sm:px-8 lg:pt-48">
           <SectionLabel>Náš příběh</SectionLabel>
-          <h1 className="mt-5 font-brand text-4xl font-bold uppercase leading-tight text-cream sm:text-5xl">
-            Kdo stojí za Kousek Bali
+          <h1 className="mt-5 font-brand text-4xl uppercase leading-tight text-cream sm:text-5xl">
+            <span className="font-bold">Kdo stojí za</span>{" "}
+            <span className="font-light">Kousek Bali</span>
           </h1>
         </div>
 

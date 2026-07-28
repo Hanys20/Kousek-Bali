@@ -11,8 +11,9 @@ export function StatsBar() {
   return (
     <section className="border-t border-turquoise/25 bg-night-900/40">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[auto_1fr] lg:gap-16 lg:py-20">
-        <h2 className="max-w-xs font-brand text-2xl font-bold uppercase leading-tight text-cream sm:text-4xl">
-          Kakao s příběhem, který dává smysl
+        <h2 className="max-w-xs font-brand text-2xl uppercase leading-tight text-cream sm:text-4xl">
+          <span className="font-bold">Kakao s příběhem,</span>{" "}
+          <span className="font-light">který dává smysl</span>
         </h2>
 
         <dl className="grid grid-cols-2 gap-y-10 sm:grid-cols-4 lg:border-l lg:border-cream/10 lg:pl-16">

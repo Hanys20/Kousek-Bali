@@ -33,8 +33,9 @@ export function RitualSteps() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <SectionLabel>Jak připravit</SectionLabel>
-          <h2 className="mt-5 font-brand text-3xl font-bold uppercase leading-tight text-cream sm:text-5xl">
-            Malý rituál pro velký okamžik
+          <h2 className="mt-5 font-brand text-3xl uppercase leading-tight text-cream sm:text-5xl">
+            <span className="font-bold">Malý rituál</span>{" "}
+            <span className="font-light">pro velký okamžik</span>
           </h2>
         </div>
 

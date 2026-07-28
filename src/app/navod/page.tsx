@@ -45,8 +45,9 @@ export default function NavodPage() {
       <main className="flex-1">
         <div className="mx-auto max-w-3xl px-5 pb-4 pt-40 text-center sm:px-8 lg:pt-48">
           <SectionLabel>Jak připravit</SectionLabel>
-          <h1 className="mt-5 font-brand text-4xl font-bold uppercase leading-tight text-cream sm:text-5xl">
-            Malý rituál pro velký okamžik
+          <h1 className="mt-5 font-brand text-4xl uppercase leading-tight text-cream sm:text-5xl">
+            <span className="font-bold">Malý rituál</span>{" "}
+            <span className="font-light">pro velký okamžik</span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl leading-relaxed text-cream-muted">
             Ceremoniální kakao se nepřipravuje jako běžné kakao z krabice —

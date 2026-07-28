@@ -1,46 +1,92 @@
+import Image from "next/image";
+import Link from "next/link";
 import type { Product } from "@/lib/types";
-import { PlaceholderPhoto } from "./PlaceholderPhoto";
 
 export function ProductCard({ product }: { product: Product }) {
+  const { featured } = product;
+
   return (
-    <div
-      className={`flex flex-col rounded-2xl border p-5 ${
-        product.featured
-          ? "border-turquoise/50 bg-forest-800"
-          : "border-cream/10 bg-forest-900"
+    <article
+      className={`group relative flex flex-col overflow-hidden rounded-card border transition-colors ${
+        featured
+          ? "border-gold/40 bg-forest-850"
+          : "border-cream/10 bg-forest-900 hover:border-cream/20"
       }`}
     >
-      {product.featured && (
-        <span className="tracked-label mb-3 self-start rounded-full bg-turquoise/15 px-3 py-1 text-[10px] font-semibold text-turquoise">
-          Doporučeno
+      <div className="relative aspect-square overflow-hidden">
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          style={{ objectPosition: product.imagePosition }}
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-950/60 to-transparent" />
+
+        {/*
+          Místo hvězdiček hmotnost balení — e-shop zatím nemá skutečné
+          recenze a vymyšlené hodnocení by zákazníka klamalo.
+          Až budou reálné recenze, přijde sem hvězdičkové hodnocení.
+        */}
+        <span className="absolute left-3.5 top-3.5 rounded-full bg-forest-950/80 px-3 py-1.5 text-xs font-bold text-cream backdrop-blur">
+          {formatWeight(product.weightGrams)}
         </span>
-      )}
 
-      <PlaceholderPhoto
-        label={product.name}
-        src={product.image || undefined}
-        className="aspect-square w-full"
-      />
-
-      <div className="mt-4 flex items-center gap-1 text-xs text-terracotta-light">
-        {"★".repeat(Math.round(product.rating))}
-        {"☆".repeat(5 - Math.round(product.rating))}
+        {featured && (
+          <span className="tracked-label absolute right-3.5 top-3.5 rounded-full bg-gold px-3 py-1.5 text-[0.6rem] font-bold text-forest-950">
+            Doporučeno
+          </span>
+        )}
       </div>
 
-      <h3 className="mt-2 font-serif text-xl text-cream">{product.name}</h3>
-      <p className="mt-1 text-sm text-cream-muted">{product.description}</p>
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="font-serif text-xl leading-snug text-cream">
+          <Link href={`/eshop/${product.slug}`} className="after:absolute after:inset-0">
+            {product.name}
+          </Link>
+        </h3>
+        <p className="mt-1.5 text-sm text-cream-muted">{product.description}</p>
 
-      <div className="mt-4 flex items-center justify-between">
-        <span className="font-serif text-lg text-cream">
-          {product.price.toLocaleString("cs-CZ")} Kč
-        </span>
-        <button
-          aria-label={`Přidat ${product.name} do košíku`}
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-turquoise text-lg leading-none text-forest-950 transition-colors hover:bg-turquoise-light"
-        >
-          +
-        </button>
+        {product.note && (
+          <p className="mt-3 text-sm leading-relaxed text-cream-muted">
+            {product.note}
+          </p>
+        )}
+
+        {/* mt-auto drží cenu u spodní hrany, takže ceny všech karet lícují */}
+        <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+          <span className="font-serif text-2xl text-gold">
+            {product.price.toLocaleString("cs-CZ")} Kč
+          </span>
+
+          {/* Přidání do košíku napojíme, až bude hotová logika objednávky. */}
+          <button
+            type="button"
+            aria-label={`Přidat ${product.name} do košíku`}
+            className="relative z-10 flex size-11 items-center justify-center rounded-full bg-gold text-forest-950 transition-colors hover:bg-gold-light"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              aria-hidden
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
+    </article>
   );
+}
+
+function formatWeight(grams: number) {
+  return grams >= 1000
+    ? `${(grams / 1000).toLocaleString("cs-CZ")} kg`
+    : `${grams} g`;
 }

@@ -1,62 +1,93 @@
 @import "tailwindcss";
 
 /*
- * Barevná paleta vychází z klientova loga (tyrkysová) a z dotazníku
- * (hnědá / tyrkysová / bílá) — viz CLAUDE.md pro kontext značky.
- * Tailwind v4 čte tokeny z @theme a generuje z nich utility třídy
- * (např. --color-turquoise -> bg-turquoise, text-turquoise, border-turquoise).
- * Barvy se ladí jen tady, ne natvrdo v komponentách.
+ * Design systém Kousek Bali.
+ *
+ * Paleta vychází z klientova loga (tyrkysová #27a8b3 je vzorkovaná přímo
+ * z vektoru) a z dotazníku: hnědá / tyrkysová / bílá v tmavé jungle náladě.
+ * Zlatá je akcentová barva akcí (CTA, ceny, pruh benefitů) — tyrkysová
+ * zůstává barvou značky (logo, drobné detaily, uvozovky).
+ *
+ * Tokeny se ladí jen tady. V komponentách používej utility třídy
+ * (bg-forest-900, text-gold, border-cream/10), nikdy hex natvrdo.
  */
-:root {
-  /* tmavě zelená až černozelená — hlavní plocha webu */
-  --color-forest-950: #0f1a12;
-  --color-forest-900: #16241a;
-  --color-forest-800: #1e2f22;
-  --color-forest-700: #28402f;
+@theme {
+  /* plochy — hluboká tmavě zelená s nádechem petroleje, sedí k tyrkysové */
+  --color-forest-950: #081915;
+  --color-forest-900: #0d2420;
+  --color-forest-850: #113029;
+  --color-forest-800: #163a31;
+  --color-forest-700: #22493d;
 
-  /* tyrkysová z loga — primární brand akcent */
-  --color-turquoise: #20a9b3;
-  --color-turquoise-light: #4bc4cd;
-  --color-turquoise-dark: #17828a;
+  /* zlatá — primární akce, ceny, pruh benefitů */
+  --color-gold: #d9a94e;
+  --color-gold-light: #e8c583;
+  --color-gold-dark: #b8862f;
 
-  /* teplá terakota — sekundární akcent inspirovaný obaly a přírodou */
+  /* tyrkysová z loga — barva značky */
+  --color-turquoise: #27a8b3;
+  --color-turquoise-light: #5cc7d0;
+  --color-turquoise-dark: #1b7d86;
+
+  /* teplá terakota — drobné detaily inspirované obaly a přírodou */
   --color-terracotta: #8a5a3b;
-  --color-terracotta-light: #a97650;
 
-  /* krémově bílá — text na tmavém pozadí, nikdy čistě bílá */
-  --color-cream: #f5f1e8;
-  --color-cream-muted: #cdc4b1;
+  /* text — krémová, nikdy čistě bílá */
+  --color-cream: #f4efe4;
+  --color-cream-muted: #a9bdb3;
+
+  /* poloměry — měkké, zaoblené tvary jako v logu */
+  --radius-card: 1.25rem;
 }
 
+/*
+ * Fonty se načítají přes next/font (layout.tsx), takže jejich CSS proměnné
+ * zná až běhový DOM — proto `inline`.
+ *
+ * font-serif  = Fraunces — nadpisy, ceny, velká čísla
+ * font-sans   = Inter — UI a delší texty (nejlépe čitelné na mobilu)
+ * font-brand  = Yoshida Sans z loga — displejové akcenty, ne malý text
+ */
 @theme inline {
-  --color-forest-950: var(--color-forest-950);
-  --color-forest-900: var(--color-forest-900);
-  --color-forest-800: var(--color-forest-800);
-  --color-forest-700: var(--color-forest-700);
-
-  --color-turquoise: var(--color-turquoise);
-  --color-turquoise-light: var(--color-turquoise-light);
-  --color-turquoise-dark: var(--color-turquoise-dark);
-
-  --color-terracotta: var(--color-terracotta);
-  --color-terracotta-light: var(--color-terracotta-light);
-
-  --color-cream: var(--color-cream);
-  --color-cream-muted: var(--color-cream-muted);
-
-  /* typografie: elegantní serif na nadpisy, prostrkaný sans na labely */
-  --font-serif: var(--font-fraunces);
-  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-yoshida), var(--font-inter), sans-serif;
 }
 
 body {
   background: var(--color-forest-950);
   color: var(--color-cream);
-  font-family: var(--font-sans);
 }
 
-/* jemné prostrkání pro drobné verzálkové labely (menu, štítky sekcí) */
+/* drobné verzálkové labely (menu, štítky sekcí) */
 .tracked-label {
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+/* jemné oddělení sekcí bez tvrdé linky */
+.section-divider {
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--color-cream) 12%, transparent),
+    transparent
+  );
+}
+
+/* viditelný focus pro ovládání klávesnicí */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

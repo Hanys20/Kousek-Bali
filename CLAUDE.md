@@ -15,16 +15,46 @@ ceny.
 
 Tmavá jungle estetika, prémiový rituál, ne běžný e-shop s potravinami.
 
-- **Barvy** (vychází z klientova loga, needit): tmavě zelená/černozelená
-  `#0f1a12`–`#16241a` jako hlavní plocha; tyrkysová `#20A9B3` (z loga) jako
-  primární akcent na CTA/ikony/aktivní stavy; terakota `#8a5a3b` jako
-  sekundární akcent (drobné detaily, ne plošně); text krémově bílý `#f5f1e8`,
-  nikdy čistě bílý. Tokeny jsou v `src/app/globals.css` (`@theme`), nikdy je
-  nezadávej natvrdo v komponentách.
-- **Typografie**: Fraunces (serif) na velké nadpisy — klid a rituál. Inter
-  (sans, prostrkaný, verzálky) na labely, menu a drobné popisky.
+- **Barvy**: tmavě zelená s nádechem petroleje `#081915`–`#163a31` jako hlavní
+  plocha; **zlatá `#d9a94e`** jako barva akcí (CTA, ceny, pruh benefitů,
+  ikony); **tyrkysová `#27a8b3`** je barva značky, vzorkovaná přímo
+  z vektorového loga (logo se nikdy nepřebarvuje); terakota `#8a5a3b` na
+  drobnosti; text krémový `#f4efe4`, nikdy čistě bílý. Tokeny jsou
+  v `src/app/globals.css` (`@theme`) — nikdy nezadávej hex natvrdo
+  v komponentách.
+- **Typografie**:
+  - `font-serif` = Fraunces — nadpisy, ceny, velká čísla
+  - `font-sans` = Inter — UI a delší texty
+  - `font-brand` = Yoshida Sans (font z loga) — jen displejové akcenty.
+    Pro tělo textu se nepoužívá: má výrazné „k“ a v malých velikostech se
+    slévají háčky, což na mobilu (odkud chodí většina návštěvníků) zhoršuje
+    čitelnost.
+- **Ikony**: čárová sada od klienta v `public/icons/`. Jsou to černé kresby,
+  barví se přes CSS mask komponentou `<Icon>` — barvu řídí `text-*` třída.
 - **Nálada**: klidná, jasná, radostná, přírodní. Fotky dělají většinu práce,
   text je stručný. Žádný přeplácaný layout — jedna myšlenka na sekci.
+
+## Materiály od klienta
+
+Zdroje jsou v `client_materials/` (loga, AI fotky, ikony, fonty). Do `public/`
+patří jen zpracované verze — fotky převedené na WebP (z ~2 MB PNG na ~100–165
+kB), assety s ASCII názvy. Skript, který to připravil, byl jednorázový;
+při přidání dalších fotek je potřeba je znovu převést.
+
+## Na co si dát pozor v obsahu
+
+- **Žádná vymyšlená hodnocení ani čísla.** E-shop zatím nemá recenze, takže
+  se hvězdičky nezobrazují (v kartě je místo nich hmotnost balení). Stejně
+  tak se nepoužívá neověřený údaj typu „25+ let tradice“ — držíme se tvrzení,
+  která má klient v zadání.
+- Ceny v `src/lib/products.ts` odpovídají zadání (0,5 kg = 1 100 Kč,
+  1 kg = 2 000 Kč). Třetí produkt je placeholder, než ho klient doplní.
+- Fotky produktů jsou zatím atmosférické snímky — finální verze potřebuje
+  packshoty tyrkysových obalů.
+- **Licence fontu Yoshida Sans (TypeUnion)**: dodaný soubor je desktopový OTF.
+  Než se font začne používat na živém webu, je potřeba ověřit, že licence
+  pokrývá i webové vkládání (webfont licence bývá samostatná). Teď se font
+  na stránce nepoužívá, takže se návštěvníkům ani nestahuje.
 
 ## Tech stack a architektura
 

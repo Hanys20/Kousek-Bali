@@ -1,6 +1,14 @@
-export function SectionLabel({ children }: { children: React.ReactNode }) {
+export function SectionLabel({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <span className="tracked-label text-xs font-semibold text-turquoise">
+    <span
+      className={`tracked-label block text-[0.7rem] font-bold text-gold ${className}`}
+    >
       {children}
     </span>
   );

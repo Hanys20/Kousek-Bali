@@ -1,39 +1,58 @@
-import { Button } from "@/components/ui/Button";
+import Image from "next/image";
+import { Button, ArrowRight } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { PlaceholderPhoto } from "@/components/ui/PlaceholderPhoto";
-import { stockPhotos } from "@/lib/stock-photos";
+import { LeafDecor } from "@/components/ui/LeafDecor";
+import { Icon } from "@/components/ui/Icon";
 
 export function OriginStory() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
-      <div className="grid items-center gap-12 md:grid-cols-2">
-        <div className="relative">
-          <PlaceholderPhoto
-            label="Sušení kakaových bobů na farmě"
-            src={stockPhotos.originStory}
-            className="aspect-[4/5] w-full"
-          />
-          <div className="absolute -bottom-6 -right-6 rounded-2xl border border-turquoise/40 bg-forest-900 px-5 py-4 shadow-xl shadow-black/40">
-            <p className="font-serif text-2xl text-turquoise">25+ let</p>
-            <p className="tracked-label text-[10px] text-cream-muted">tradice pěstování</p>
-          </div>
-        </div>
+    <section className="relative overflow-hidden py-24 lg:py-32">
+      <LeafDecor className="-right-16 top-10 size-96 rotate-12" />
 
-        <div>
-          <SectionLabel>Od farmářů až k vám</SectionLabel>
-          <h2 className="mt-4 font-serif text-4xl leading-tight text-cream">
-            Od balijských farmářů až k vašemu šálku
-          </h2>
-          <p className="mt-6 text-cream-muted">
-            Naše kakao pochází z malých rodinných farem na Bali, kde se
-            sklízí a zpracovává tradičními postupy — bez zbytečných zásahů a
-            spěchu. Věříme, že takhle chutná kakao nejlépe: čistě, jemně a s
-            respektem k místu, odkud pochází.
-          </p>
-          <div className="mt-8">
-            <Button href="/o-nas" variant="secondary">
-              Přečíst celý příběh
-            </Button>
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+          <div className="relative">
+            <div className="relative aspect-4/3 overflow-hidden rounded-card">
+              <Image
+                src="/images/farmari.webp"
+                alt="Ruce balijského farmáře držící zralý kakaový lusk na stromě"
+                fill
+                sizes="(min-width: 1024px) 45vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+
+            {/*
+              Odznak přesahuje přes roh fotky. Drží se tvrzení, která má
+              klient v zadání — žádné číslo, které nemáme jak doložit.
+            */}
+            <div className="absolute -bottom-7 left-4 flex items-center gap-3.5 rounded-2xl border border-gold/25 bg-forest-850 px-6 py-4 shadow-xl shadow-black/40 sm:-left-7">
+              <Icon name="ekologie" className="size-8 text-gold" />
+              <p className="text-sm font-bold leading-tight text-cream">
+                Malé rodinné
+                <span className="block text-cream-muted">farmy na Bali</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:pt-4">
+            <SectionLabel>Od farmářů až k vám</SectionLabel>
+            <h2 className="mt-5 font-serif text-4xl leading-[1.15] text-cream sm:text-5xl">
+              Od balijských farmářů
+              <span className="block">až k vám</span>
+            </h2>
+            <p className="mt-6 max-w-lg leading-relaxed text-cream-muted">
+              Naše kakao pochází z malých rodinných farem na Bali, kde se
+              pěstuje s úctou k přírodě a tradičním metodám. Každý krok — od
+              sklizně až po balení — děláme ručně a v malé dílně, abychom
+              zachovali jeho čistotu, sílu a jedinečný charakter.
+            </p>
+            <div className="mt-9">
+              <Button href="/o-nas">
+                Přečíst celý příběh
+                <ArrowRight />
+              </Button>
+            </div>
           </div>
         </div>
       </div>

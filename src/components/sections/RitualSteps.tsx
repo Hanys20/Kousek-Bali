@@ -1,44 +1,65 @@
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { Icon, type IconName } from "@/components/ui/Icon";
+import { Button, ArrowRight } from "@/components/ui/Button";
 
-const steps = [
+const steps: { icon: IconName; title: string; description: string }[] = [
   {
-    number: "01",
+    icon: "cokolada",
     title: "Nasekej",
-    description: "Nastrouhej nebo nasekej kousek kakaa na jemné kousky.",
+    description: "Odlom nebo nasekej 20–30 g kakaa na malé kousky.",
   },
   {
-    number: "02",
+    icon: "hrnek",
     title: "Zahřej",
-    description: "Rozpusť ho v horké (ne vroucí) vodě nebo rostlinném mléce.",
+    description: "Zahřej vodu nebo rostlinné mléko na 60–70 °C, ne k varu.",
   },
   {
-    number: "03",
+    icon: "hmozdir",
     title: "Rozmíchej",
-    description: "Šlehej metličkou dokřena, dokud nevznikne hladká pěna.",
+    description: "Přidej kakao a míchej, dokud se úplně nerozpustí.",
   },
   {
-    number: "04",
+    icon: "svicka",
     title: "Vychutnej",
-    description: "Najdi si klid, dej si čas a vychutnej si okamžik.",
+    description: "Zpomal, zhluboka dýchej a vychutnej si každý doušek.",
   },
 ];
 
 export function RitualSteps() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
-      <div className="mx-auto max-w-xl text-center">
-        <SectionLabel>Jak připravit</SectionLabel>
-        <h2 className="mt-4 font-serif text-4xl text-cream">Malý rituál pro velký okamžik</h2>
-      </div>
+    <section className="py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <SectionLabel>Jak připravit</SectionLabel>
+          <h2 className="mt-5 font-serif text-4xl leading-tight text-cream sm:text-5xl">
+            Malý rituál pro velký okamžik
+          </h2>
+        </div>
 
-      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {steps.map((step) => (
-          <div key={step.number} className="rounded-2xl border border-cream/10 bg-forest-900 p-6">
-            <span className="font-serif text-3xl text-turquoise">{step.number}</span>
-            <h3 className="mt-4 font-serif text-xl text-cream">{step.title}</h3>
-            <p className="mt-2 text-sm text-cream-muted">{step.description}</p>
-          </div>
-        ))}
+        <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((step, i) => (
+            <li
+              key={step.title}
+              className="relative rounded-card border border-cream/10 bg-forest-900 p-7 pt-9 transition-colors hover:border-gold/30"
+            >
+              <span className="absolute -top-4 left-7 flex size-9 items-center justify-center rounded-full bg-gold font-serif text-sm font-bold text-forest-950">
+                {i + 1}
+              </span>
+              <Icon name={step.icon} className="size-11 text-gold" />
+              <h3 className="mt-5 font-serif text-xl text-cream">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-cream-muted">
+                {step.description}
+              </p>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-12 text-center">
+          <Button href="/navod" variant="ghost">
+            Podrobný návod s videem
+            <ArrowRight />
+          </Button>
+        </div>
       </div>
     </section>
   );

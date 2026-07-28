@@ -1,11 +1,23 @@
-// Textová náhrada za vektorové logo klienta (tyrkysové pozadí, bílá ikona a
-// nápis). Až dorazí reálný vektor, nahradit za <Image>, nepřebarvovat.
-export function Logo({ className = "" }: { className?: string }) {
+import Image from "next/image";
+
+type LogoProps = {
+  className?: string;
+  /** `dlouhe` obsahuje i claim „ze srdce do srdce“ — hodí se do patičky. */
+  variant?: "hlavni" | "dlouhe";
+};
+
+// Vektorové logo od klienta v bílé (negativní) verzi pro tmavé pozadí.
+// Logo se nepřebarvuje — používá se tak, jak je.
+export function Logo({ className = "h-11 w-auto", variant = "hlavni" }: LogoProps) {
+  const isLong = variant === "dlouhe";
   return (
-    <span
-      className={`inline-flex items-center gap-2 rounded-full bg-turquoise px-4 py-1.5 font-serif text-sm font-semibold uppercase tracking-wide text-forest-950 ${className}`}
-    >
-      Kousek Bali
-    </span>
+    <Image
+      src={isLong ? "/logo/logo-dlouhe.svg" : "/logo/logo-hlavni.svg"}
+      alt="Kousek Bali"
+      width={isLong ? 1407 : 117}
+      height={isLong ? 394 : 56}
+      priority
+      className={className}
+    />
   );
 }

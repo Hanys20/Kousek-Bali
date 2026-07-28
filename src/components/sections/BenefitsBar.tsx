@@ -1,32 +1,29 @@
-const benefits = [
-  { label: "Etický původ" },
-  { label: "Čisté složení" },
-  { label: "Malé šarže" },
-  { label: "Doprava z Česka" },
+import { Icon, type IconName } from "@/components/ui/Icon";
+
+const benefits: { icon: IconName; label: string }[] = [
+  { icon: "ekologie", label: "Etický původ" },
+  { icon: "kakao", label: "Čisté složení" },
+  { icon: "pece", label: "Malé šarže" },
+  { icon: "doprava", label: "Doprava z Česka" },
 ];
 
-// Barevně nejvýraznější pruh na stránce — v referenci zlatá, tady dle
-// klientova loga tyrkysová (žádnou zlatou paleta neobsahuje).
+// Barevně nejvýraznější pruh na stránce — dělá zlatý předěl mezi sekcemi.
 export function BenefitsBar() {
   return (
-    <section className="bg-turquoise">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-10 text-forest-950 sm:grid-cols-4">
-        {benefits.map((b) => (
-          <div key={b.label} className="flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-center">
-            <BenefitIcon />
-            <span className="tracked-label text-xs font-semibold">{b.label}</span>
-          </div>
+    <section className="bg-gold text-forest-950">
+      <ul className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-y-6 px-5 py-7 sm:px-8">
+        {benefits.map((b, i) => (
+          <li
+            key={b.label}
+            className={`flex w-1/2 items-center justify-center gap-3 px-4 sm:w-auto sm:flex-1 ${
+              i > 0 ? "sm:border-l sm:border-forest-950/20" : ""
+            }`}
+          >
+            <Icon name={b.icon} className="size-7" />
+            <span className="text-sm font-bold">{b.label}</span>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
-  );
-}
-
-function BenefitIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
-      <circle cx="12" cy="12" r="9" />
-      <path d="m8.5 12 2.5 2.5 4.5-4.5" />
-    </svg>
   );
 }

@@ -1,35 +1,46 @@
-import { Button } from "@/components/ui/Button";
+import Image from "next/image";
+import { Button, ArrowRight } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { PlaceholderPhoto } from "@/components/ui/PlaceholderPhoto";
-import { stockPhotos } from "@/lib/stock-photos";
+import { Icon, type IconName } from "@/components/ui/Icon";
 
 export function Hero() {
   return (
     <section className="relative">
-      <PlaceholderPhoto
-        label="Balijský chrám v džungli"
-        src={stockPhotos.hero}
-        priority
-        className="h-[640px] w-full rounded-none border-none sm:h-[720px]"
-      />
+      <div className="relative flex min-h-[42rem] items-center lg:min-h-[46rem]">
+        <Image
+          src="/images/hero-jungle.webp"
+          alt="Šálek horkého kakaa a rozkrojený kakaový lusk v balijské džungli"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[68%_center] lg:object-center"
+        />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/40 to-forest-950/10" />
+        {/* ztmavení, aby text nad fotkou spolehlivě četl */}
+        <div className="absolute inset-0 bg-gradient-to-r from-forest-950 via-forest-950/80 to-forest-950/25 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-transparent to-forest-950/70" />
 
-      <div className="absolute inset-0 flex items-center">
-        <div className="mx-auto w-full max-w-6xl px-6">
+        <div className="relative mx-auto w-full max-w-7xl px-5 pb-28 pt-32 sm:px-8 lg:pb-36">
           <div className="max-w-xl">
             <SectionLabel>Ceremoniální kakao přímo z Bali</SectionLabel>
-            <h1 className="mt-4 font-serif text-5xl leading-tight text-cream sm:text-6xl">
-              Kousek Bali v každém šálku
+
+            <h1 className="mt-5 font-serif text-[2.75rem] leading-[1.05] text-cream sm:text-6xl lg:text-[4.25rem]">
+              Kousek Bali
+              <span className="block">v každém šálku</span>
             </h1>
-            <p className="mt-6 max-w-md text-base text-cream-muted sm:text-lg">
-              Čisté ceremoniální kakao od balijských farmářů — pěstované a
-              zpracované s respektem k přírodě i tradicím. Pro každého, kdo
-              chce zpomalit a vychutnat si okamžik.
+
+            <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-cream-muted">
+              Čisté ceremoniální kakao, ručně zpracované s respektem k přírodě
+              i místním tradicím. Pro každého, kdo chce zpomalit a vychutnat si
+              okamžik.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button href="/eshop">Objevit kakao</Button>
-              <Button href="/o-nas" variant="secondary">
+
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Button href="/eshop" size="lg">
+                Objevit kakao
+                <ArrowRight />
+              </Button>
+              <Button href="/o-nas" variant="secondary" size="lg">
                 Náš příběh
               </Button>
             </div>
@@ -37,41 +48,47 @@ export function Hero() {
         </div>
       </div>
 
-      {/* trust bar — přesahuje přes spodní okraj hero fotky (na mobilu jede pod fotkou v běžném toku) */}
-      <div className="relative z-10 mx-auto -mt-16 hidden max-w-5xl px-6 sm:block">
-        <TrustBarCard />
-      </div>
-      <div className="relative z-10 mx-auto -mt-6 max-w-5xl px-6 sm:hidden">
-        <TrustBarCard />
+      {/* trust bar přesahuje přes spodní okraj hero fotky */}
+      <div className="relative z-10 mx-auto -mt-16 max-w-5xl px-5 sm:-mt-20 sm:px-8">
+        <TrustBar />
       </div>
     </section>
   );
 }
 
-function TrustBarCard() {
-  const items = [
-    { label: "100 % čisté kakao" },
-    { label: "Přímo od farmářů" },
-    { label: "Ručně zpracované" },
-  ];
+const trustItems: { icon: IconName; label: string }[] = [
+  { icon: "kakao", label: "100 % čisté kakao" },
+  { icon: "ekologie", label: "Přímo od farmářů" },
+  { icon: "pece", label: "Ručně zpracované" },
+];
 
+function TrustBar() {
   return (
-    <div className="grid grid-cols-3 divide-x divide-cream/10 rounded-2xl border border-cream/10 bg-forest-900/95 shadow-2xl shadow-black/40 backdrop-blur">
-      {items.map((item) => (
-        <div key={item.label} className="flex flex-col items-center gap-3 px-6 py-7 text-center">
-          <TrustIcon />
-          <span className="tracked-label text-xs text-cream">{item.label}</span>
-        </div>
-      ))}
+    <div className="relative overflow-hidden rounded-card border border-cream/10 bg-forest-900/95 shadow-2xl shadow-black/50 backdrop-blur-sm">
+      {/* kakaový lusk vykukuje z levého okraje karty (jen na širokých displejích) */}
+      <div className="pointer-events-none absolute -left-6 bottom-0 top-0 hidden w-56 lg:block">
+        <Image
+          src="/images/kakaovy-lusk.webp"
+          alt=""
+          fill
+          sizes="224px"
+          className="object-contain object-left"
+        />
+      </div>
+
+      <ul className="grid gap-px sm:grid-cols-3 lg:pl-48">
+        {trustItems.map((item) => (
+          <li
+            key={item.label}
+            className="flex items-center justify-center gap-3.5 px-6 py-6 text-center sm:flex-col sm:gap-3 sm:py-8"
+          >
+            <Icon name={item.icon} className="size-8 text-gold sm:size-9" />
+            <span className="text-sm font-bold leading-snug text-cream sm:max-w-[9rem]">
+              {item.label}
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
-  );
-}
-
-function TrustIcon() {
-  return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-turquoise" aria-hidden>
-      <path d="M12 2 3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7l-9-5Z" />
-      <path d="m8.5 12 2.5 2.5 4.5-4.5" />
-    </svg>
   );
 }

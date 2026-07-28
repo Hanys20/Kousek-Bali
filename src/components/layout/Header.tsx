@@ -71,7 +71,7 @@ export function Header() {
 
           <Link
             href="/eshop"
-            className="hidden rounded-full bg-turquoise px-6 py-2.5 text-sm font-bold text-night-950 transition-colors hover:bg-turquoise-light sm:inline-flex"
+            className="hidden rounded-full bg-turquoise px-6 py-2.5 font-brand text-sm font-bold uppercase tracking-wide text-night-950 transition-colors hover:bg-turquoise-light sm:inline-flex"
           >
             Ochutnat kakao
           </Link>
@@ -139,7 +139,7 @@ export function Header() {
           <Link
             href="/eshop"
             onClick={() => setMenuOpen(false)}
-            className="mt-5 flex w-full items-center justify-center rounded-full bg-turquoise px-6 py-3.5 font-bold text-night-950"
+            className="mt-5 flex w-full items-center justify-center rounded-full bg-turquoise px-6 py-3.5 font-brand font-bold uppercase tracking-wide text-night-950"
           >
             Ochutnat kakao
           </Link>

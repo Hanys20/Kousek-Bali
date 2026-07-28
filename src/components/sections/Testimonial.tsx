@@ -32,7 +32,7 @@ export function Testimonial() {
           </p>
 
           <footer className="tracked-label mt-8 text-xs font-bold text-cream-muted">
-            Kousek Bali — ze srdce do srdce
+            Štěpánka a Honza, Kousek Bali — ze srdce do srdce
           </footer>
         </blockquote>
       </div>

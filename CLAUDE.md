@@ -25,12 +25,20 @@ Tmavá jungle estetika, prémiový rituál, ne běžný e-shop s potravinami.
   natvrdo v komponentách. Všechny kombinace textu a pozadí procházejí
   WCAG AA (nejnižší je tyrkysová na kartě, 4,95:1).
 - **Typografie**:
-  - `font-serif` = Fraunces — nadpisy, ceny, velká čísla
-  - `font-sans` = Inter — UI a delší texty
-  - `font-brand` = Yoshida Sans (font z loga) — jen displejové akcenty.
-    Pro tělo textu se nepoužívá: má výrazné „k“ a v malých velikostech se
-    slévají háčky, což na mobilu (odkud chodí většina návštěvníků) zhoršuje
-    čitelnost.
+  - `font-brand` = Yoshida Sans (font z loga) — **nadpisy (h1–h3) a tlačítka**.
+    **Zásadní pravidlo: Yoshida se používá VÝHRADNĚ VERZÁLKAMI
+    (`uppercase`), nikdy v běžném ani smíšeném řezu.** V malých/smíšených
+    písmenech se jeho výrazné „k“ a diakritika slévají a text je nečitelný
+    (ověřeno vizuálním testem — „100 % čisté kakao“ v běžném řezu splývalo
+    na „100 % ôisté kahao“). Ve verzálkách je naopak výrazný, hravý a
+    čitelný a ladí s logem. Než přidáš Yoshida na nový text, zkontroluj, že
+    má `uppercase` — bez něj je to bug, ne styl.
+  - **Výjimka**: citát v `Testimonial.tsx` zůstává Fraunces kurzívou, ne
+    Yoshida verzálkami — je to celá věta, ne nadpis/tlačítko, a verzálkový
+    displejový font by zabil klidnou/intimní náladu, kterou má citát mít.
+  - `font-serif` = Fraunces — ceny, velká čísla (statistiky), citát. Elegantní
+    protiváha k hravé Yoshidě, drží klidnou náladu tam, kde nejde o CTA.
+  - `font-sans` = Inter — UI a delší texty (popisky, odstavce, navigace).
 - **Ikony**: čárová sada od klienta v `public/icons/`. Jsou to černé kresby,
   barví se přes CSS mask komponentou `<Icon>` — barvu řídí `text-*` třída.
 - **Nálada**: klidná, jasná, radostná, přírodní. Fotky dělají většinu práce,
@@ -46,17 +54,28 @@ při přidání dalších fotek je potřeba je znovu převést.
 ## Na co si dát pozor v obsahu
 
 - **Žádná vymyšlená hodnocení ani čísla.** E-shop zatím nemá recenze, takže
-  se hvězdičky nezobrazují (v kartě je místo nich hmotnost balení). Stejně
-  tak se nepoužívá neověřený údaj typu „25+ let tradice“ — držíme se tvrzení,
-  která má klient v zadání.
-- Ceny v `src/lib/products.ts` odpovídají zadání (0,5 kg = 1 100 Kč,
-  1 kg = 2 000 Kč). Třetí produkt je placeholder, než ho klient doplní.
+  se hvězdičky nezobrazují (v kartě je místo nich hmotnost balení).
+- Ceny v `src/lib/products.ts` (respektive v tabulce `products` v Supabase)
+  odpovídají zadání (0,5 kg = 1 100 Kč, 1 kg = 2 000 Kč). Třetí produkt je
+  placeholder, než ho klient doplní.
+- **Reálný příběh značky** (z letáku, viz `/o-nas` a homepage): zakladatelé
+  jsou **Štěpánka a Honza**, kakao objevili na svatební cestě na Bali. Kakao
+  se dováží od balijské čokoládovny **Ubud Raw**, která podporuje lokální
+  farmáře a zpracovává boby tradičně — nepraží se, přirozeně fermentují
+  a suší na slunci. Tohle je zdroj pravdy pro copy o původu — nepoužívat
+  obecné „malé rodinné farmy" bez vazby na Ubud Raw.
+- **Recept na přípravu** (z letáku, `/navod` a homepage rituál): 30–40 g
+  kakaa na osobu, zalít malým množstvím vody, zahřívat na mírném ohni max.
+  do 75 °C (nesmí vařit), pak přilít 150–200 ml mléka (např. ovesné),
+  dochutit kokosovým cukrem nebo medem. Šlehač/ponorný mixér/molinillo na
+  pěnu, ozdoba sušenými květy/skořicí/mořskou solí.
 - Fotky produktů jsou zatím atmosférické snímky — finální verze potřebuje
   packshoty tyrkysových obalů.
 - **Licence fontu Yoshida Sans (TypeUnion)**: dodaný soubor je desktopový OTF.
-  Než se font začne používat na živém webu, je potřeba ověřit, že licence
-  pokrývá i webové vkládání (webfont licence bývá samostatná). Teď se font
-  na stránce nepoužívá, takže se návštěvníkům ani nestahuje.
+  Font se teď aktivně používá na živém webu (nadpisy, tlačítka) — **je
+  potřeba ověřit, že licence pokrývá i webové vkládání** (webfont licence
+  bývá u desktopových fontů samostatná a placená zvlášť). Tohle není
+  teoretická poznámka, dokud to neověříš, běží to produkčně.
 
 ## Data a nasazení
 

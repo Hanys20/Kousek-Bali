@@ -7,6 +7,7 @@ export type IconName =
   | "doprava"
   | "cokolada"
   | "hrnek"
+  | "hrnec"
   | "hmozdir"
   | "svicka"
   | "sto-procent"

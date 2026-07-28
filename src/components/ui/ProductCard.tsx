@@ -41,7 +41,7 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
 
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-serif text-xl leading-snug text-cream">
+        <h3 className="font-brand text-lg font-bold uppercase leading-snug text-cream">
           <Link href={`/eshop/${product.slug}`} className="after:absolute after:inset-0">
             {product.name}
           </Link>

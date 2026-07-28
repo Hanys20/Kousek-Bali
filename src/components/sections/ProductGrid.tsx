@@ -11,12 +11,12 @@ export async function ProductGrid() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <SectionLabel>Naše kakao</SectionLabel>
-          <h2 className="mt-5 font-serif text-4xl leading-tight text-cream sm:text-5xl">
+          <h2 className="mt-5 font-brand text-3xl font-bold uppercase leading-tight text-cream sm:text-5xl">
             Vyber si svůj kousek Bali
           </h2>
           <p className="mt-5 leading-relaxed text-cream-muted">
             Ceremoniální kakao ve dvou velikostech a k tomu syrové boby na
-            ochutnávku — všechno z jedné balijské farmy.
+            ochutnávku — od balijské čokoládovny Ubud Raw.
           </p>
         </div>
 

@@ -13,29 +13,30 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[68%_center] lg:object-center"
+          className="object-cover"
         />
 
-        {/* ztmavení, aby text nad fotkou spolehlivě četl */}
-        <div className="absolute inset-0 bg-gradient-to-r from-night-950 via-night-950/80 to-night-950/25 lg:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-night-950 via-transparent to-night-950/70" />
+        {/* rovnoměrné ztmavení pro čitelnost textu — žádný přechod do ztracena */}
+        <div className="absolute inset-0 bg-night-950/45" />
 
-        <div className="relative mx-auto w-full max-w-7xl px-5 pb-28 pt-32 sm:px-8 lg:pb-36">
-          <div className="max-w-xl">
-            <SectionLabel>Ceremoniální kakao přímo z Bali</SectionLabel>
+        <div className="relative mx-auto w-full max-w-7xl px-5 pb-28 pt-32 text-center sm:px-8 lg:pb-36">
+          <div className="mx-auto max-w-2xl">
+            <SectionLabel className="text-center">
+              Ceremoniální kakao přímo z Bali
+            </SectionLabel>
 
-            <h1 className="mt-5 font-serif text-[2.75rem] leading-[1.05] text-cream sm:text-6xl lg:text-[4.25rem]">
+            <h1 className="mt-5 font-brand text-4xl font-bold uppercase leading-[1.05] text-cream sm:text-6xl lg:text-[4.25rem]">
               Kousek Bali
               <span className="block">v každém šálku</span>
             </h1>
 
-            <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-cream-muted">
+            <p className="mx-auto mt-6 max-w-md text-[1.05rem] leading-relaxed text-cream-muted">
               Čisté ceremoniální kakao, ručně zpracované s respektem k přírodě
               i místním tradicím. Pro každého, kdo chce zpomalit a vychutnat si
               okamžik.
             </p>
 
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-9 flex flex-wrap justify-center gap-3">
               <Button href="/eshop" size="lg">
                 Objevit kakao
                 <ArrowRight />
@@ -64,19 +65,20 @@ const trustItems: { icon: IconName; label: string }[] = [
 
 function TrustBar() {
   return (
-    <div className="relative overflow-hidden rounded-card border border-cream/10 bg-night-900/95 shadow-2xl shadow-black/50 backdrop-blur-sm">
-      {/* kakaový lusk vykukuje z levého okraje karty (jen na širokých displejích) */}
-      <div className="pointer-events-none absolute -left-6 bottom-0 top-0 hidden w-56 lg:block">
+    <div className="grid overflow-hidden rounded-card border border-cream/10 bg-night-900/95 shadow-2xl shadow-black/50 backdrop-blur-sm lg:grid-cols-2">
+      {/* levá půlka — fotka kakaového lusku, jen na širokých displejích */}
+      <div className="relative hidden lg:block">
         <Image
           src="/images/kakaovy-lusk.webp"
-          alt=""
+          alt="Rozkrojený kakaový lusk s boby"
           fill
-          sizes="224px"
-          className="object-contain object-left"
+          sizes="50vw"
+          className="object-cover"
         />
       </div>
 
-      <ul className="grid gap-px sm:grid-cols-3 lg:pl-48">
+      {/* pravá půlka — dělicí linka je přesně na půlce karty (lg:border-l) */}
+      <ul className="grid grid-cols-1 sm:grid-cols-3 lg:border-l lg:border-cream/15">
         {trustItems.map((item) => (
           <li
             key={item.label}

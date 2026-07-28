@@ -9,8 +9,10 @@ type ButtonProps = {
   className?: string;
 };
 
+// Yoshida (font-brand) jen VERZÁLKAMI — v malých/smíšených písmenech se
+// jeho "k" a diakritika slévají (viz CLAUDE.md, pravidlo o Yoshida Sans).
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors duration-200";
+  "inline-flex items-center justify-center gap-2 rounded-full font-brand font-bold uppercase tracking-wide transition-colors duration-200";
 
 const sizes = {
   md: "px-6 py-2.5 text-sm",
@@ -18,7 +20,7 @@ const sizes = {
 };
 
 const variants = {
-  // zlatá = hlavní akce (koupit, objevit)
+  // tyrkysová = hlavní akce (koupit, objevit)
   primary: "bg-turquoise text-night-950 hover:bg-turquoise-light",
   // obrysová varianta pro druhotnou akci vedle primární
   secondary:

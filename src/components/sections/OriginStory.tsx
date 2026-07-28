@@ -22,30 +22,27 @@ export function OriginStory() {
               />
             </div>
 
-            {/*
-              Odznak přesahuje přes roh fotky. Drží se tvrzení, která má
-              klient v zadání — žádné číslo, které nemáme jak doložit.
-            */}
+            {/* Odznak přesahuje přes roh fotky — drží se reálného zpracování od Ubud Raw. */}
             <div className="absolute -bottom-7 left-4 flex items-center gap-3.5 rounded-2xl border border-turquoise/25 bg-night-850 px-6 py-4 shadow-xl shadow-black/40 sm:-left-7">
               <Icon name="ekologie" className="size-8 text-turquoise" />
               <p className="text-sm font-bold leading-tight text-cream">
-                Malé rodinné
-                <span className="block text-cream-muted">farmy na Bali</span>
+                Bez pražení
+                <span className="block text-cream-muted">sušené na slunci</span>
               </p>
             </div>
           </div>
 
           <div className="lg:pt-4">
             <SectionLabel>Od farmářů až k vám</SectionLabel>
-            <h2 className="mt-5 font-serif text-4xl leading-[1.15] text-cream sm:text-5xl">
+            <h2 className="mt-5 font-brand text-3xl font-bold uppercase leading-[1.15] text-cream sm:text-5xl">
               Od balijských farmářů
               <span className="block">až k vám</span>
             </h2>
             <p className="mt-6 max-w-lg leading-relaxed text-cream-muted">
-              Naše kakao pochází z malých rodinných farem na Bali, kde se
-              pěstuje s úctou k přírodě a tradičním metodám. Každý krok — od
-              sklizně až po balení — děláme ručně a v malé dílně, abychom
-              zachovali jeho čistotu, sílu a jedinečný charakter.
+              Kakao dovážíme od balijské čokoládovny <strong className="text-cream">Ubud Raw</strong>,
+              která podporuje lokální farmáře a zpracovává kakao tradičně —
+              boby se nepraží, ale přirozeně fermentují a suší na slunci, aby
+              si zachovaly svou chuť i vlastnosti.
             </p>
             <div className="mt-9">
               <Button href="/o-nas">

@@ -103,7 +103,9 @@ export function Footer() {
           ))}
 
           <div className="rounded-card border border-cream/10 bg-night-900 p-7">
-            <h3 className="font-serif text-xl text-cream">Buď součástí rituálu</h3>
+            <h3 className="font-brand text-lg font-bold uppercase text-cream">
+              Buď součástí rituálu
+            </h3>
             <p className="mt-2 text-sm leading-relaxed text-cream-muted">
               Novinky, tipy a příběhy z Bali přímo do e-mailu. Jednou za čas,
               bez spamu.
@@ -124,7 +126,7 @@ export function Footer() {
               />
               <button
                 type="submit"
-                className="w-full rounded-full bg-turquoise px-5 py-3 text-sm font-bold text-night-950 transition-colors hover:bg-turquoise-light"
+                className="w-full rounded-full bg-turquoise px-5 py-3 font-brand text-sm font-bold uppercase tracking-wide text-night-950 transition-colors hover:bg-turquoise-light"
               >
                 Přihlásit se
               </button>

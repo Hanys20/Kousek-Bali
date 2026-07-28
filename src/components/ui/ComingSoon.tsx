@@ -16,7 +16,7 @@ export function ComingSoon({ label, title, description }: ComingSoonProps) {
       {/* horní odsazení kvůli fixnímu headeru */}
       <div className="relative mx-auto max-w-3xl px-5 pb-28 pt-40 text-center sm:px-8 lg:pt-48">
         <SectionLabel>{label}</SectionLabel>
-        <h1 className="mt-5 font-serif text-4xl leading-tight text-cream sm:text-5xl">
+        <h1 className="mt-5 font-brand text-3xl font-bold uppercase leading-tight text-cream sm:text-5xl">
           {title}
         </h1>
         <p className="mt-6 leading-relaxed text-cream-muted">{description}</p>

@@ -89,26 +89,20 @@ function TrustBar() {
       </div>
 
       {/*
-        Fotka lusku — zmenšený rám ořezaný jen zleva/zprava/zdola (clip-path
-        s top: -100 % nechává horní hranu otevřenou), takže lusk může vizuálně
-        vystupovat nad rám. Vrstva leží nad kartou, ne uvnitř jejího
-        overflow-hidden, jinak by ji horní hrana karty osekla.
+        Fotka lusku je transparentní produktový výřez, ne fotka na celou
+        plochu — proto object-contain (nic z lusku neuřízne) místo
+        object-cover (to useklo vzpřímený lusk úplně nahoře). Vrstva leží
+        nad kartou mimo její overflow-hidden a přesahuje přes její horní
+        okraj, takže lusk může vizuálně vystupovat ven z rámu.
       */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/2 lg:block">
-        <div
-          className="absolute inset-x-3 bottom-3 top-10 rounded-2xl"
-          style={{ clipPath: "inset(-100% 0px 0px 0px round 1rem)" }}
-        >
-          <div className="absolute inset-x-0 bottom-0 h-[135%]">
-            <Image
-              src="/images/kakaovy-lusk.webp"
-              alt="Rozkrojený kakaový lusk s boby"
-              fill
-              sizes="50vw"
-              className="object-cover object-bottom"
-            />
-          </div>
-        </div>
+      <div className="pointer-events-none absolute -top-8 bottom-3 left-3 hidden w-[42%] lg:block">
+        <Image
+          src="/images/kakaovy-lusk.webp"
+          alt="Rozkrojený kakaový lusk s boby"
+          fill
+          sizes="30vw"
+          className="object-contain object-bottom"
+        />
       </div>
     </div>
   );

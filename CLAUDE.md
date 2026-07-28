@@ -71,16 +71,26 @@ při přidání dalších fotek je potřeba je znovu převést.
   kopírují, aby objednávka přežila pozdější změnu ceníku.
 - **Statický export**: `output: "export"` → složka `out/`. Katalog se
   načítá ze Supabase **při buildu**, takže po změně produktu je potřeba
-  spustit nový deploy (deploy hook v Cloudflare).
-- V Cloudflare Pages nastav `Build command: npm run build`,
-  `Build output directory: out`.
+  spustit nový deploy.
+- **Nasazení běží přes Cloudflare Workers (ne přes starší Cloudflare
+  Pages)** — Cloudflare teď nové git-napojené statické projekty zakládá
+  jako Worker se static assets, dashboard tomu pořád říká souhrnně
+  „Workers & Pages". Konfigurace je ve `wrangler.jsonc`
+  (`assets.directory: "./out"`). V Cloudflare dashboardu (Workers & Pages
+  → Create application → Import a repository) nastav:
+  `Build command: npm run build`, `Deploy command: npm run deploy`.
+  **Název Workeru v dashboardu musí přesně sedět s `name` ve
+  `wrangler.jsonc` (`kousek-bali`)**, jinak build v CI/CD selže.
+- `_headers` (bezpečnostní hlavičky, cache) je v `public/`, Workers static
+  assets ho čtou nativně stejně jako dřív Pages — nepatří do
+  `.assetsignore`, musí zůstat nahraný, aby se vůbec načetl.
 
 ## Tech stack a architektura
 
-- Next.js (App Router, TS, Tailwind v4) → statický build → **Cloudflare
-  Pages** (deploy na push do `main`)
+- Next.js (App Router, TS, Tailwind v4) → statický export → **Cloudflare
+  Workers (static assets)** (deploy na push do `main` přes Workers Builds)
 - **Supabase**: databáze + edge functions (`create-order`, `check-payment`)
-  řeší vše, co potřebuje server — Cloudflare Pages je čistě statický hosting
+  řeší vše, co potřebuje server — frontend je čistě statický hosting
 - **Resend**: transakční e-maily (potvrzení objednávky, potvrzení platby)
 - Platba: QR platba (SPD formát) s variabilním symbolem, párování přes
   bankovní API (ideálně Fio) na cronu
@@ -98,7 +108,8 @@ Bali, Indonésie, kakao z Bali
 2. ✅ Design systém (barvy, typografie) + homepage s placeholder texty v ČJ
 3. ⏳ E-shop: výpis produktů + detail produktu
 4. ⏳ Checkout s QR platbou + napojení Supabase
-5. ⏳ Cloudflare Pages deploy
+5. ⏳ Cloudflare Workers deploy + doména kousekbali.cz (pozor: MX na
+   Webglobe kvůli info@kousekbali.cz, musí se přenést spolu s DNS)
 
 Právní stránky (obchodní podmínky, ochrana údajů, cookies) jsou povinné
 kvůli e-shopu — nezapomenout před spuštěním.

@@ -19,7 +19,9 @@ produktem, ne primárně podle ceny.
 ## Tech stack
 
 - **Next.js** (App Router, TypeScript, Tailwind CSS v4) — frontend, statický build
-- **Cloudflare Pages** — hosting, deploy automaticky při push na `main`
+- **Cloudflare Workers (static assets)** — hosting, deploy automaticky
+  při push na `main` (Cloudflare dnes nové statické projekty zakládá jako
+  Worker, ne jako klasický Pages projekt — viz `wrangler.jsonc`)
 - **Supabase** — databáze a backendová logika (edge functions: vytvoření
   objednávky + variabilní symbol, kontrola platby na bance)
 - **Resend** — transakční e-maily (potvrzení objednávky, potvrzení platby)
@@ -72,4 +74,4 @@ Otevři [http://localhost:3000](http://localhost:3000).
 
 Aktuálně: kostra projektu + design systém (barvy, typografie) a homepage.
 Následuje: e-shop (výpis + detail produktu), checkout s QR platbou, napojení
-Supabase a Cloudflare Pages.
+Supabase a Cloudflare Workers.

@@ -1,0 +1,12 @@
+{
+  // Worker name musí přesně sedět s názvem projektu v dashboardu
+  // (Workers & Pages), jinak build v CI/CD selže.
+  "name": "kousek-bali",
+  "compatibility_date": "2026-07-28",
+  // Next.js `output: "export"` (next.config.ts) generuje statický web do out/.
+  // Žádný server-side kód tu neběží — objednávky a platby řeší
+  // Supabase edge funkce, ne tento Worker.
+  "assets": {
+    "directory": "./out"
+  }
+}

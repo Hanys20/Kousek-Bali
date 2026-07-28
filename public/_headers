@@ -1,0 +1,17 @@
+# Bezpečnostní hlavičky pro Cloudflare Pages.
+# Content-Security-Policy tu záměrně není — dá se doladit, až bude hotový
+# checkout a bude jasné, na jaké domény se web opravdu připojuje.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Hashované soubory Next.js se nikdy nemění, můžou se cachovat natrvalo.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=2592000

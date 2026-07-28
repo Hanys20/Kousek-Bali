@@ -40,12 +40,12 @@ export function RitualSteps() {
           {steps.map((step, i) => (
             <li
               key={step.title}
-              className="relative rounded-card border border-cream/10 bg-forest-900 p-7 pt-9 transition-colors hover:border-gold/30"
+              className="relative rounded-card border border-cream/10 bg-night-900 p-7 pt-9 transition-colors hover:border-turquoise/30"
             >
-              <span className="absolute -top-4 left-7 flex size-9 items-center justify-center rounded-full bg-gold font-serif text-sm font-bold text-forest-950">
+              <span className="absolute -top-4 left-7 flex size-9 items-center justify-center rounded-full bg-turquoise font-serif text-sm font-bold text-night-950">
                 {i + 1}
               </span>
-              <Icon name={step.icon} className="size-11 text-gold" />
+              <Icon name={step.icon} className="size-11 text-turquoise" />
               <h3 className="mt-5 font-serif text-xl text-cream">{step.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-cream-muted">
                 {step.description}

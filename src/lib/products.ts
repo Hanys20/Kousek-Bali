@@ -1,38 +1,51 @@
+import { supabase } from "./supabase";
 import type { Product } from "./types";
+import type { ProductRow } from "./database.types";
+
+function toProduct(row: ProductRow): Product {
+  return {
+    slug: row.slug,
+    name: row.name,
+    price: row.price_czk,
+    weightGrams: row.weight_grams,
+    description: row.description ?? "",
+    note: row.note ?? undefined,
+    featured: row.featured,
+    image: row.image ?? "",
+    imagePosition: row.image_position ?? undefined,
+  };
+}
 
 /*
- * Placeholder katalog — nahradit daty ze Supabase, až bude napojená databáze.
- * Ceny odpovídají zadání od klienta. Fotky jsou zatím atmosférické snímky
- * od klienta; finální verze potřebuje packshoty tyrkysových obalů.
+ * Web se sestavuje staticky (Cloudflare Pages), takže se katalog načte
+ * při buildu. Po změně cen nebo produktů je potřeba spustit nový deploy —
+ * na to slouží deploy hook v Cloudflare.
  */
-export const products: Product[] = [
-  {
-    slug: "ceremonialni-kakao-05kg",
-    name: "Ceremoniální kakao 0,5 kg",
-    price: 1100,
-    weightGrams: 500,
-    description: "Pro pravidelný rituál doma.",
-    image: "/images/salek-kakaa.webp",
-    imagePosition: "left center",
-  },
-  {
-    slug: "ceremonialni-kakao-1kg",
-    name: "Ceremoniální kakao 1 kg",
-    price: 2000,
-    weightGrams: 1000,
-    description: "Pro rodinu, přátele nebo kavárnu.",
-    note: "Nejvýhodnější balení pro každodenní kakaové chvíle.",
-    featured: true,
-    image: "/images/hero-jungle.webp",
-    imagePosition: "72% center",
-  },
-  {
-    slug: "kakaove-boby",
-    name: "Balijské kakaové boby",
-    price: 350,
-    weightGrams: 250,
-    description: "Na ochutnávku i experimenty.",
-    image: "/images/z-farmy-k-vam.webp",
-    imagePosition: "center",
-  },
-];
+export async function getProducts(): Promise<Product[]> {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("active", true)
+    .order("sort_order", { ascending: true });
+
+  if (error) {
+    throw new Error(`Nepodařilo se načíst produkty ze Supabase: ${error.message}`);
+  }
+
+  return (data ?? []).map(toProduct);
+}
+
+export async function getProductBySlug(slug: string): Promise<Product | null> {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("slug", slug)
+    .eq("active", true)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(`Nepodařilo se načíst produkt ${slug}: ${error.message}`);
+  }
+
+  return data ? toProduct(data) : null;
+}

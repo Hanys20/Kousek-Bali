@@ -41,7 +41,7 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled || menuOpen
-          ? "border-b border-cream/10 bg-forest-950/90 backdrop-blur-md"
+          ? "border-b border-cream/10 bg-night-950/90 backdrop-blur-md"
           : "border-b border-transparent"
       }`}
     >
@@ -52,7 +52,7 @@ export function Header() {
 
         {/* pilulková navigace uprostřed (desktop) */}
         <nav className="hidden lg:block">
-          <ul className="tracked-label flex items-center gap-1 rounded-full border border-cream/10 bg-forest-900/70 p-1.5 text-[0.68rem] font-bold text-cream/80 backdrop-blur">
+          <ul className="tracked-label flex items-center gap-1 rounded-full border border-cream/10 bg-night-900/70 p-1.5 text-[0.68rem] font-bold text-cream/80 backdrop-blur">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
@@ -71,7 +71,7 @@ export function Header() {
 
           <Link
             href="/eshop"
-            className="hidden rounded-full bg-gold px-6 py-2.5 text-sm font-bold text-forest-950 transition-colors hover:bg-gold-light sm:inline-flex"
+            className="hidden rounded-full bg-turquoise px-6 py-2.5 text-sm font-bold text-night-950 transition-colors hover:bg-turquoise-light sm:inline-flex"
           >
             Ochutnat kakao
           </Link>
@@ -112,7 +112,7 @@ export function Header() {
           tabIndex={-1}
           aria-hidden
           onClick={() => setMenuOpen(false)}
-          className="fixed inset-0 -z-10 h-screen w-full cursor-default bg-forest-950/80 lg:hidden"
+          className="fixed inset-0 -z-10 h-screen w-full cursor-default bg-night-950/80 lg:hidden"
         />
       )}
 
@@ -120,7 +120,7 @@ export function Header() {
       <div
         id="mobilni-menu"
         hidden={!menuOpen}
-        className="relative border-t border-cream/10 bg-forest-950/95 backdrop-blur-md lg:hidden"
+        className="relative border-t border-cream/10 bg-night-950/95 backdrop-blur-md lg:hidden"
       >
         <nav className="mx-auto max-w-7xl px-5 py-6 sm:px-8">
           <ul className="flex flex-col gap-1">
@@ -139,7 +139,7 @@ export function Header() {
           <Link
             href="/eshop"
             onClick={() => setMenuOpen(false)}
-            className="mt-5 flex w-full items-center justify-center rounded-full bg-gold px-6 py-3.5 font-bold text-forest-950"
+            className="mt-5 flex w-full items-center justify-center rounded-full bg-turquoise px-6 py-3.5 font-bold text-night-950"
           >
             Ochutnat kakao
           </Link>
@@ -174,7 +174,7 @@ function CartLink() {
         <circle cx="17" cy="21" r="1" />
       </svg>
       {count > 0 && (
-        <span className="absolute -right-0.5 -top-0.5 flex size-4.5 items-center justify-center rounded-full bg-gold text-[0.6rem] font-bold text-forest-950">
+        <span className="absolute -right-0.5 -top-0.5 flex size-4.5 items-center justify-center rounded-full bg-turquoise text-[0.6rem] font-bold text-night-950">
           {count}
         </span>
       )}

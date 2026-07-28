@@ -9,8 +9,8 @@ export function ProductCard({ product }: { product: Product }) {
     <article
       className={`group relative flex flex-col overflow-hidden rounded-card border transition-colors ${
         featured
-          ? "border-gold/40 bg-forest-850"
-          : "border-cream/10 bg-forest-900 hover:border-cream/20"
+          ? "border-turquoise/40 bg-night-850"
+          : "border-cream/10 bg-night-900 hover:border-cream/20"
       }`}
     >
       <div className="relative aspect-square overflow-hidden">
@@ -22,19 +22,19 @@ export function ProductCard({ product }: { product: Product }) {
           style={{ objectPosition: product.imagePosition }}
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-950/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-night-950/60 to-transparent" />
 
         {/*
           Místo hvězdiček hmotnost balení — e-shop zatím nemá skutečné
           recenze a vymyšlené hodnocení by zákazníka klamalo.
           Až budou reálné recenze, přijde sem hvězdičkové hodnocení.
         */}
-        <span className="absolute left-3.5 top-3.5 rounded-full bg-forest-950/80 px-3 py-1.5 text-xs font-bold text-cream backdrop-blur">
+        <span className="absolute left-3.5 top-3.5 rounded-full bg-night-950/80 px-3 py-1.5 text-xs font-bold text-cream backdrop-blur">
           {formatWeight(product.weightGrams)}
         </span>
 
         {featured && (
-          <span className="tracked-label absolute right-3.5 top-3.5 rounded-full bg-gold px-3 py-1.5 text-[0.6rem] font-bold text-forest-950">
+          <span className="tracked-label absolute right-3.5 top-3.5 rounded-full bg-turquoise px-3 py-1.5 text-[0.6rem] font-bold text-night-950">
             Doporučeno
           </span>
         )}
@@ -56,7 +56,7 @@ export function ProductCard({ product }: { product: Product }) {
 
         {/* mt-auto drží cenu u spodní hrany, takže ceny všech karet lícují */}
         <div className="mt-auto flex items-end justify-between gap-4 pt-6">
-          <span className="font-serif text-2xl text-gold">
+          <span className="font-serif text-2xl text-turquoise">
             {product.price.toLocaleString("cs-CZ")} Kč
           </span>
 
@@ -64,7 +64,7 @@ export function ProductCard({ product }: { product: Product }) {
           <button
             type="button"
             aria-label={`Přidat ${product.name} do košíku`}
-            className="relative z-10 flex size-11 items-center justify-center rounded-full bg-gold text-forest-950 transition-colors hover:bg-gold-light"
+            className="relative z-10 flex size-11 items-center justify-center rounded-full bg-turquoise text-night-950 transition-colors hover:bg-turquoise-light"
           >
             <svg
               width="18"

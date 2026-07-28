@@ -9,7 +9,7 @@ const stats: { icon: IconName; value: string; label: string }[] = [
 
 export function StatsBar() {
   return (
-    <section className="border-t border-gold/25 bg-forest-900/40">
+    <section className="border-t border-turquoise/25 bg-night-900/40">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[auto_1fr] lg:gap-16 lg:py-20">
         <h2 className="max-w-xs font-serif text-3xl leading-tight text-cream sm:text-4xl">
           Kakao s příběhem, který dává smysl
@@ -18,7 +18,7 @@ export function StatsBar() {
         <dl className="grid grid-cols-2 gap-y-10 sm:grid-cols-4 lg:border-l lg:border-cream/10 lg:pl-16">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <Icon name={stat.icon} className="mx-auto size-8 text-gold" />
+              <Icon name={stat.icon} className="mx-auto size-8 text-turquoise" />
               <dd className="mt-3 font-serif text-4xl leading-none text-cream">
                 {stat.value}
               </dd>

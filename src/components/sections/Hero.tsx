@@ -17,8 +17,8 @@ export function Hero() {
         />
 
         {/* ztmavení, aby text nad fotkou spolehlivě četl */}
-        <div className="absolute inset-0 bg-gradient-to-r from-forest-950 via-forest-950/80 to-forest-950/25 lg:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-transparent to-forest-950/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-night-950 via-night-950/80 to-night-950/25 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-night-950 via-transparent to-night-950/70" />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 pb-28 pt-32 sm:px-8 lg:pb-36">
           <div className="max-w-xl">
@@ -64,7 +64,7 @@ const trustItems: { icon: IconName; label: string }[] = [
 
 function TrustBar() {
   return (
-    <div className="relative overflow-hidden rounded-card border border-cream/10 bg-forest-900/95 shadow-2xl shadow-black/50 backdrop-blur-sm">
+    <div className="relative overflow-hidden rounded-card border border-cream/10 bg-night-900/95 shadow-2xl shadow-black/50 backdrop-blur-sm">
       {/* kakaový lusk vykukuje z levého okraje karty (jen na širokých displejích) */}
       <div className="pointer-events-none absolute -left-6 bottom-0 top-0 hidden w-56 lg:block">
         <Image
@@ -82,7 +82,7 @@ function TrustBar() {
             key={item.label}
             className="flex items-center justify-center gap-3.5 px-6 py-6 text-center sm:flex-col sm:gap-3 sm:py-8"
           >
-            <Icon name={item.icon} className="size-8 text-gold sm:size-9" />
+            <Icon name={item.icon} className="size-8 text-turquoise sm:size-9" />
             <span className="text-sm font-bold leading-snug text-cream sm:max-w-[9rem]">
               {item.label}
             </span>

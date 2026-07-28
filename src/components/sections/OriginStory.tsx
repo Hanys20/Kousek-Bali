@@ -26,8 +26,8 @@ export function OriginStory() {
               Odznak přesahuje přes roh fotky. Drží se tvrzení, která má
               klient v zadání — žádné číslo, které nemáme jak doložit.
             */}
-            <div className="absolute -bottom-7 left-4 flex items-center gap-3.5 rounded-2xl border border-gold/25 bg-forest-850 px-6 py-4 shadow-xl shadow-black/40 sm:-left-7">
-              <Icon name="ekologie" className="size-8 text-gold" />
+            <div className="absolute -bottom-7 left-4 flex items-center gap-3.5 rounded-2xl border border-turquoise/25 bg-night-850 px-6 py-4 shadow-xl shadow-black/40 sm:-left-7">
+              <Icon name="ekologie" className="size-8 text-turquoise" />
               <p className="text-sm font-bold leading-tight text-cream">
                 Malé rodinné
                 <span className="block text-cream-muted">farmy na Bali</span>

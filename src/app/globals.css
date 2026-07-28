@@ -3,38 +3,33 @@
 /*
  * Design systém Kousek Bali.
  *
- * Paleta vychází z klientova loga (tyrkysová #27a8b3 je vzorkovaná přímo
- * z vektoru) a z dotazníku: hnědá / tyrkysová / bílá v tmavé jungle náladě.
- * Zlatá je akcentová barva akcí (CTA, ceny, pruh benefitů) — tyrkysová
- * zůstává barvou značky (logo, drobné detaily, uvozovky).
+ * Celá paleta stojí na tyrkysové z klientova loga (#27a8b3, vzorkovaná
+ * přímo z vektoru). Tyrkysová je zároveň barva značky i barva akcí —
+ * CTA, ceny, ikony, pruh benefitů. Plochy jsou tmavá petrolejová,
+ * ne zelená. Teplo do webu vnáší fotky (kakao, lusky), ne barva UI.
  *
  * Tokeny se ladí jen tady. V komponentách používej utility třídy
- * (bg-forest-900, text-gold, border-cream/10), nikdy hex natvrdo.
+ * (bg-night-900, text-turquoise, border-cream/10), nikdy hex natvrdo.
  */
 @theme {
-  /* plochy — hluboká tmavě zelená s nádechem petroleje, sedí k tyrkysové */
-  --color-forest-950: #081915;
-  --color-forest-900: #0d2420;
-  --color-forest-850: #113029;
-  --color-forest-800: #163a31;
-  --color-forest-700: #22493d;
+  /* plochy — tmavá petrolejová, od skoro černé po karty */
+  --color-night-950: #061f1e;
+  --color-night-900: #0a2726;
+  --color-night-850: #0e302f;
+  --color-night-800: #133b3a;
+  --color-night-700: #1c4d4c;
 
-  /* zlatá — primární akce, ceny, pruh benefitů */
-  --color-gold: #d9a94e;
-  --color-gold-light: #e8c583;
-  --color-gold-dark: #b8862f;
-
-  /* tyrkysová z loga — barva značky */
+  /* tyrkysová z loga — značka i akce zároveň */
   --color-turquoise: #27a8b3;
   --color-turquoise-light: #5cc7d0;
   --color-turquoise-dark: #1b7d86;
 
-  /* teplá terakota — drobné detaily inspirované obaly a přírodou */
+  /* teplá terakota — rezerva na drobné detaily, plošně se nepoužívá */
   --color-terracotta: #8a5a3b;
 
   /* text — krémová, nikdy čistě bílá */
   --color-cream: #f4efe4;
-  --color-cream-muted: #a9bdb3;
+  --color-cream-muted: #9fb5b3;
 
   /* poloměry — měkké, zaoblené tvary jako v logu */
   --radius-card: 1.25rem;
@@ -55,7 +50,7 @@
 }
 
 body {
-  background: var(--color-forest-950);
+  background: var(--color-night-950);
   color: var(--color-cream);
 }
 
@@ -77,7 +72,7 @@ body {
 
 /* viditelný focus pro ovládání klávesnicí */
 :focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-turquoise);
   outline-offset: 3px;
   border-radius: 4px;
 }

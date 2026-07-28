@@ -11,7 +11,7 @@ export function Testimonial() {
         className="-z-10 object-cover object-[22%_center] lg:object-center"
       />
       {/* fotka má tmavou pravou půlku — scrim ji dorovná, aby citát četl i na mobilu */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-forest-950/85 via-forest-950/70 to-forest-950/85 lg:from-forest-950/10 lg:via-forest-950/60 lg:to-forest-950/85" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-night-950/85 via-night-950/70 to-night-950/85 lg:from-night-950/10 lg:via-night-950/60 lg:to-night-950/85" />
 
       <div className="mx-auto grid max-w-7xl px-5 py-24 sm:px-8 lg:grid-cols-2 lg:py-36">
         <blockquote className="lg:col-start-2">

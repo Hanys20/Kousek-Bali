@@ -15,13 +15,15 @@ ceny.
 
 Tmavá jungle estetika, prémiový rituál, ne běžný e-shop s potravinami.
 
-- **Barvy**: tmavě zelená s nádechem petroleje `#081915`–`#163a31` jako hlavní
-  plocha; **zlatá `#d9a94e`** jako barva akcí (CTA, ceny, pruh benefitů,
-  ikony); **tyrkysová `#27a8b3`** je barva značky, vzorkovaná přímo
-  z vektorového loga (logo se nikdy nepřebarvuje); terakota `#8a5a3b` na
-  drobnosti; text krémový `#f4efe4`, nikdy čistě bílý. Tokeny jsou
-  v `src/app/globals.css` (`@theme`) — nikdy nezadávej hex natvrdo
-  v komponentách.
+- **Barvy**: celá paleta stojí na **tyrkysové `#27a8b3`** vzorkované přímo
+  z vektorového loga (logo se nikdy nepřebarvuje). Tyrkysová je zároveň
+  barva značky i barva akcí — CTA, ceny, ikony, pruh benefitů. Plochy jsou
+  tmavá petrolejová `night-950`–`night-700` (`#061f1e`–`#1c4d4c`), **ne
+  zelená**. Text krémový `#f4efe4`, nikdy čistě bílý. Teplo dodávají fotky
+  (kakao, lusky), ne barva UI. Terakota `#8a5a3b` je rezerva na drobnosti.
+  Tokeny jsou v `src/app/globals.css` (`@theme`) — nikdy nezadávej hex
+  natvrdo v komponentách. Všechny kombinace textu a pozadí procházejí
+  WCAG AA (nejnižší je tyrkysová na kartě, 4,95:1).
 - **Typografie**:
   - `font-serif` = Fraunces — nadpisy, ceny, velká čísla
   - `font-sans` = Inter — UI a delší texty
@@ -55,6 +57,23 @@ při přidání dalších fotek je potřeba je znovu převést.
   Než se font začne používat na živém webu, je potřeba ověřit, že licence
   pokrývá i webové vkládání (webfont licence bývá samostatná). Teď se font
   na stránce nepoužívá, takže se návštěvníkům ani nestahuje.
+
+## Data a nasazení
+
+- **Supabase projekt**: `kzqjhzlbvlcgwvfziidu` (eu-central-1). Tabulky
+  `products`, `orders`, `order_items`, `newsletter_subscribers`.
+- **RLS je zapnuté všude.** `orders` a `order_items` nemají žádnou politiku
+  pro veřejný klíč — jsou tedy z webu neviditelné i nezapisovatelné a
+  pracují s nimi jen edge funkce přes servisní klíč. Ověřeno reálnými
+  HTTP dotazy: podvržení objednávky i změna ceny produktu jsou zamítnuty.
+- **Ceny jsou integer v korunách**, ne float — u peněz se s desetinnými
+  čísly dělají chyby zaokrouhlením. Do `order_items` se název i cena
+  kopírují, aby objednávka přežila pozdější změnu ceníku.
+- **Statický export**: `output: "export"` → složka `out/`. Katalog se
+  načítá ze Supabase **při buildu**, takže po změně produktu je potřeba
+  spustit nový deploy (deploy hook v Cloudflare).
+- V Cloudflare Pages nastav `Build command: npm run build`,
+  `Build output directory: out`.
 
 ## Tech stack a architektura
 

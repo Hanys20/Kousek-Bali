@@ -7,7 +7,7 @@ export function SectionLabel({
 }) {
   return (
     <span
-      className={`tracked-label block text-[0.7rem] font-bold text-gold ${className}`}
+      className={`tracked-label block text-[0.7rem] font-bold text-turquoise ${className}`}
     >
       {children}
     </span>

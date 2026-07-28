@@ -69,7 +69,7 @@ export default function RootLayout({
       lang="cs"
       className={`${fraunces.variable} ${inter.variable} ${yoshida.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-forest-950 font-sans text-cream">
+      <body className="min-h-full flex flex-col bg-night-950 font-sans text-cream">
         {children}
       </body>
     </html>

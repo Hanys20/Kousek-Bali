@@ -62,7 +62,7 @@ const socials: { label: string; href: string | null; path: React.ReactNode }[] =
 
 export function Footer() {
   return (
-    <footer className="border-t border-cream/10 bg-forest-950">
+    <footer className="border-t border-cream/10 bg-night-950">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.6fr] lg:gap-10">
           <div>
@@ -92,7 +92,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-cream-muted transition-colors hover:text-gold"
+                      className="text-sm text-cream-muted transition-colors hover:text-turquoise"
                     >
                       {link.label}
                     </Link>
@@ -102,7 +102,7 @@ export function Footer() {
             </nav>
           ))}
 
-          <div className="rounded-card border border-cream/10 bg-forest-900 p-7">
+          <div className="rounded-card border border-cream/10 bg-night-900 p-7">
             <h3 className="font-serif text-xl text-cream">Buď součástí rituálu</h3>
             <p className="mt-2 text-sm leading-relaxed text-cream-muted">
               Novinky, tipy a příběhy z Bali přímo do e-mailu. Jednou za čas,
@@ -120,11 +120,11 @@ export function Footer() {
                 required
                 autoComplete="email"
                 placeholder="Váš e-mail"
-                className="w-full rounded-full border border-cream/20 bg-forest-950 px-5 py-3 text-sm text-cream placeholder:text-cream-muted/70 focus:border-gold focus:outline-none"
+                className="w-full rounded-full border border-cream/20 bg-night-950 px-5 py-3 text-sm text-cream placeholder:text-cream-muted/70 focus:border-turquoise focus:outline-none"
               />
               <button
                 type="submit"
-                className="w-full rounded-full bg-gold px-5 py-3 text-sm font-bold text-forest-950 transition-colors hover:bg-gold-light"
+                className="w-full rounded-full bg-turquoise px-5 py-3 text-sm font-bold text-night-950 transition-colors hover:bg-turquoise-light"
               >
                 Přihlásit se
               </button>
@@ -134,7 +134,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-cream/10 pt-7 text-xs text-cream-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Kousek Bali — Jan Kielkovský, IČO 22253327</p>
-          <a href="mailto:info@kousekbali.cz" className="transition-colors hover:text-gold">
+          <a href="mailto:info@kousekbali.cz" className="transition-colors hover:text-turquoise">
             info@kousekbali.cz
           </a>
         </div>
@@ -158,7 +158,7 @@ function SocialLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="flex size-10 items-center justify-center rounded-full border border-cream/15 text-cream-muted transition-colors hover:border-gold/50 hover:text-gold"
+      className="flex size-10 items-center justify-center rounded-full border border-cream/15 text-cream-muted transition-colors hover:border-turquoise/50 hover:text-turquoise"
     >
       <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
         {children}

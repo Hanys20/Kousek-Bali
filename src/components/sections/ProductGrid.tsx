@@ -1,11 +1,13 @@
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { Button, ArrowRight } from "@/components/ui/Button";
-import { products } from "@/lib/products";
+import { getProducts } from "@/lib/products";
 
-export function ProductGrid() {
+export async function ProductGrid() {
+  const products = await getProducts();
+
   return (
-    <section id="kakao" className="bg-forest-900/40 py-24 lg:py-32">
+    <section id="kakao" className="bg-night-900/40 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <SectionLabel>Naše kakao</SectionLabel>

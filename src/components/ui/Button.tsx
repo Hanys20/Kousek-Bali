@@ -19,12 +19,12 @@ const sizes = {
 
 const variants = {
   // zlatá = hlavní akce (koupit, objevit)
-  primary: "bg-gold text-forest-950 hover:bg-gold-light",
+  primary: "bg-turquoise text-night-950 hover:bg-turquoise-light",
   // obrysová varianta pro druhotnou akci vedle primární
   secondary:
     "border border-cream/30 text-cream hover:border-cream/70 hover:bg-cream/5",
   // textový odkaz se šipkou
-  ghost: "text-gold hover:text-gold-light px-0",
+  ghost: "text-turquoise hover:text-turquoise-light px-0",
 };
 
 export function Button({

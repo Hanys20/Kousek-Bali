@@ -10,13 +10,13 @@ const benefits: { icon: IconName; label: string }[] = [
 // Barevně nejvýraznější pruh na stránce — dělá zlatý předěl mezi sekcemi.
 export function BenefitsBar() {
   return (
-    <section className="bg-gold text-forest-950">
+    <section className="bg-turquoise text-night-950">
       <ul className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-y-6 px-5 py-7 sm:px-8">
         {benefits.map((b, i) => (
           <li
             key={b.label}
             className={`flex w-1/2 items-center justify-center gap-3 px-4 sm:w-auto sm:flex-1 ${
-              i > 0 ? "sm:border-l sm:border-forest-950/20" : ""
+              i > 0 ? "sm:border-l sm:border-night-950/20" : ""
             }`}
           >
             <Icon name={b.icon} className="size-7" />

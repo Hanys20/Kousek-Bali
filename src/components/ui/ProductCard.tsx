@@ -16,7 +16,11 @@ export function ProductCard({ product }: { product: Product }) {
         </span>
       )}
 
-      <PlaceholderPhoto label={`Foto: ${product.name}`} className="aspect-square w-full" />
+      <PlaceholderPhoto
+        label={product.name}
+        src={product.image || undefined}
+        className="aspect-square w-full"
+      />
 
       <div className="mt-4 flex items-center gap-1 text-xs text-terracotta-light">
         {"★".repeat(Math.round(product.rating))}

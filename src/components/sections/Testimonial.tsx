@@ -1,11 +1,13 @@
 import { PlaceholderPhoto } from "@/components/ui/PlaceholderPhoto";
+import { stockPhotos } from "@/lib/stock-photos";
 
 export function Testimonial() {
   return (
     <section className="bg-forest-900">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 md:grid-cols-2">
         <PlaceholderPhoto
-          label="Foto: příprava kakaa, ruce, šálek"
+          label="Příprava kakaa, ruce"
+          src={stockPhotos.testimonial}
           className="aspect-[4/5] w-full"
         />
         <blockquote>

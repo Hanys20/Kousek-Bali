@@ -1,4 +1,5 @@
 import type { Product } from "./types";
+import { stockPhotos } from "./stock-photos";
 
 // Placeholder katalog — nahradit daty ze Supabase, až bude napojená databáze.
 export const products: Product[] = [
@@ -9,7 +10,7 @@ export const products: Product[] = [
     weightGrams: 500,
     description: "Čisté balijské kakao pro pravidelný rituál doma.",
     rating: 5,
-    image: "",
+    image: stockPhotos.productBloc05,
   },
   {
     slug: "ceremonialni-kakao-1kg",
@@ -19,7 +20,7 @@ export const products: Product[] = [
     description: "Větší balení pro rodinu, přátele nebo kavárnu.",
     rating: 5,
     featured: true,
-    image: "",
+    image: stockPhotos.productBloc1,
   },
   {
     slug: "kakaove-boby",
@@ -28,6 +29,6 @@ export const products: Product[] = [
     weightGrams: 250,
     description: "Syrové boby přímo z farmy — na ochutnávku i experimenty.",
     rating: 4,
-    image: "",
+    image: stockPhotos.productBeans,
   },
 ];

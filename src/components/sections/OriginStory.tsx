@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { PlaceholderPhoto } from "@/components/ui/PlaceholderPhoto";
+import { stockPhotos } from "@/lib/stock-photos";
 
 export function OriginStory() {
   return (
@@ -8,7 +9,8 @@ export function OriginStory() {
       <div className="grid items-center gap-12 md:grid-cols-2">
         <div className="relative">
           <PlaceholderPhoto
-            label="Foto: balijská farma, sklizeň kakaa"
+            label="Sušení kakaových bobů na farmě"
+            src={stockPhotos.originStory}
             className="aspect-[4/5] w-full"
           />
           <div className="absolute -bottom-6 -right-6 rounded-2xl border border-turquoise/40 bg-forest-900 px-5 py-4 shadow-xl shadow-black/40">

@@ -1,12 +1,15 @@
 import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { PlaceholderPhoto } from "@/components/ui/PlaceholderPhoto";
+import { stockPhotos } from "@/lib/stock-photos";
 
 export function Hero() {
   return (
     <section className="relative">
       <PlaceholderPhoto
-        label="Foto: kakao rituál v jungle prostředí, přirozené světlo"
+        label="Balijský chrám v džungli"
+        src={stockPhotos.hero}
+        priority
         className="h-[640px] w-full rounded-none border-none sm:h-[720px]"
       />
 

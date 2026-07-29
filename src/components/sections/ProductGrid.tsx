@@ -16,12 +16,12 @@ export async function ProductGrid() {
             <span className="font-light">kousek Bali</span>
           </h2>
           <p className="mt-5 leading-relaxed text-cream-muted">
-            Ceremoniální kakao ve dvou velikostech a k tomu syrové boby na
-            ochutnávku — od balijské čokoládovny Ubud Raw.
+            Ceremoniální kakao ve dvou velikostech — 0,5 kg i 1 kg — od
+            balijské čokoládovny Ubud Raw.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-14 grid max-w-3xl gap-6 sm:grid-cols-2">
           {products.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}

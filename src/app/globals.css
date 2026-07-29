@@ -1,24 +1,28 @@
 @import "tailwindcss";
 
 /*
- * EXPERIMENTÁLNÍ SVĚTLÝ MOTIV (branch experiment/svetly-motiv, nemergovat
- * do main bez schválení). Cílem je čistě barevná varianta — žádná
- * komponenta se nemění, jen hodnoty tokenů níž.
+ * EXPERIMENTÁLNÍ MODRO-TYRKYSOVÝ MOTIV (branch experiment/svetly-motiv,
+ * nemergovat do main bez schválení). Druhá iterace: čistě bílé plochy
+ * s tmavým textem nakonec zavrženy — logo existuje jen v modré nebo
+ * bílé verzi, takže černý text k němu nesedí. Tahle verze místo toho
+ * bere PŮVODNÍ tmavou paletu a "night" škálu posouvá ze skoro černé
+ * (petrolejová, nízká sytost) k výrazně sytější tyrkysovo-modré — pořád
+ * dost tmavé na bílý text, ale vizuálně mnohem míň "černé" a víc
+ * brandové. Text (cream/cream-muted) zůstává světlý jako v původní
+ * tmavé verzi — nic se needit, jen se posunula škála pozadí.
  *
- * Trik: názvy tokenů (night-950, cream, ...) zůstávají STEJNÉ jako
- * v tmavé verzi, jen se jim otočil význam — "night-950" teď není
- * nejtmavší plocha, ale nejsvětlejší (stránka), "cream" není světlý
- * text, ale tmavý. Díky tomu nemusí žádná komponenta měnit svoje
- * utility třídy (bg-night-900, text-cream, border-cream/10...) a jde
- * čistě o to, jestli paleta funguje. Tyrkysová zůstává beze změny.
+ * Kontrast ověřený výpočtem (ne od oka): cream na night-950 10,6:1,
+ * na night-900 8,7:1, na night-850 7,1:1 — všude nad WCAG AA (4,5:1).
+ * Tyrkysové ikony na night-850 jsou nejslabší (2,8:1), pořád nad
+ * hranicí 3:1 pro netextové grafické prvky.
  */
 @theme {
-  /* plochy — teplá krémová/bílá místo tmavé petrolejové */
-  --color-night-950: #f7f3ea;
-  --color-night-900: #ffffff;
-  --color-night-850: #efe4d0;
-  --color-night-800: #e8dcc3;
-  --color-night-700: #ddccab;
+  /* plochy — sytá tmavě tyrkysová/petrolejová, ne skoro černá */
+  --color-night-950: #073c42;
+  --color-night-900: #0a4a52;
+  --color-night-850: #0e5860;
+  --color-night-800: #12656e;
+  --color-night-700: #187a84;
 
   /* tyrkysová z loga — beze změny, to je jediná barva, co se nehýbe */
   --color-turquoise: #27a8b3;
@@ -28,9 +32,9 @@
   /* teplá terakota — rezerva na drobné detaily */
   --color-terracotta: #8a5a3b;
 
-  /* text — tmavá teplá, nikdy čistě černá */
-  --color-cream: #23201c;
-  --color-cream-muted: #6b6459;
+  /* text — světlý jako v původní tmavé verzi, nikdy čistě bílý */
+  --color-cream: #f4efe4;
+  --color-cream-muted: #b9cbc8;
 
   /* poloměry — měkké, zaoblené tvary jako v logu */
   --radius-card: 1.25rem;

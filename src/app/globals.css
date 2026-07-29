@@ -1,35 +1,36 @@
 @import "tailwindcss";
 
 /*
- * Design systém Kousek Bali.
+ * EXPERIMENTÁLNÍ SVĚTLÝ MOTIV (branch experiment/svetly-motiv, nemergovat
+ * do main bez schválení). Cílem je čistě barevná varianta — žádná
+ * komponenta se nemění, jen hodnoty tokenů níž.
  *
- * Celá paleta stojí na tyrkysové z klientova loga (#27a8b3, vzorkovaná
- * přímo z vektoru). Tyrkysová je zároveň barva značky i barva akcí —
- * CTA, ceny, ikony, pruh benefitů. Plochy jsou tmavá petrolejová,
- * ne zelená. Teplo do webu vnáší fotky (kakao, lusky), ne barva UI.
- *
- * Tokeny se ladí jen tady. V komponentách používej utility třídy
- * (bg-night-900, text-turquoise, border-cream/10), nikdy hex natvrdo.
+ * Trik: názvy tokenů (night-950, cream, ...) zůstávají STEJNÉ jako
+ * v tmavé verzi, jen se jim otočil význam — "night-950" teď není
+ * nejtmavší plocha, ale nejsvětlejší (stránka), "cream" není světlý
+ * text, ale tmavý. Díky tomu nemusí žádná komponenta měnit svoje
+ * utility třídy (bg-night-900, text-cream, border-cream/10...) a jde
+ * čistě o to, jestli paleta funguje. Tyrkysová zůstává beze změny.
  */
 @theme {
-  /* plochy — tmavá petrolejová, od skoro černé po karty */
-  --color-night-950: #061f1e;
-  --color-night-900: #0a2726;
-  --color-night-850: #0e302f;
-  --color-night-800: #133b3a;
-  --color-night-700: #1c4d4c;
+  /* plochy — teplá krémová/bílá místo tmavé petrolejové */
+  --color-night-950: #f7f3ea;
+  --color-night-900: #ffffff;
+  --color-night-850: #efe4d0;
+  --color-night-800: #e8dcc3;
+  --color-night-700: #ddccab;
 
-  /* tyrkysová z loga — značka i akce zároveň */
+  /* tyrkysová z loga — beze změny, to je jediná barva, co se nehýbe */
   --color-turquoise: #27a8b3;
   --color-turquoise-light: #5cc7d0;
   --color-turquoise-dark: #1b7d86;
 
-  /* teplá terakota — rezerva na drobné detaily, plošně se nepoužívá */
+  /* teplá terakota — rezerva na drobné detaily */
   --color-terracotta: #8a5a3b;
 
-  /* text — krémová, nikdy čistě bílá */
-  --color-cream: #f4efe4;
-  --color-cream-muted: #9fb5b3;
+  /* text — tmavá teplá, nikdy čistě černá */
+  --color-cream: #23201c;
+  --color-cream-muted: #6b6459;
 
   /* poloměry — měkké, zaoblené tvary jako v logu */
   --radius-card: 1.25rem;

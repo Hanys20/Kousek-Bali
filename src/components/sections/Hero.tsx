@@ -16,8 +16,13 @@ export function Hero() {
           className="object-cover"
         />
 
-        {/* rovnoměrné ztmavení pro čitelnost textu — žádný přechod do ztracena */}
-        <div className="absolute inset-0 bg-night-950/45" />
+        {/*
+          Světlý motiv: tmavý text potřebuje mnohem silnější zesvětlení
+          fotky než světlý text v tmavé verzi (45 % nestačilo — foto je
+          místy tmavé/členité a tmavý nadpis na něm splýval). Žádný
+          přechod do ztracena, jen rovnoměrně silnější vrstva.
+        */}
+        <div className="absolute inset-0 bg-night-950/78" />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 pb-28 pt-32 text-center sm:px-8 lg:pb-36">
           <div className="mx-auto max-w-2xl">

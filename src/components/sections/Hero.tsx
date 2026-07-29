@@ -66,44 +66,35 @@ const trustItems: { icon: IconName; label: string }[] = [
 
 function TrustBar() {
   return (
-    <div className="relative">
-      {/* karta s ikonami — fotka lusku je samostatná vrstva mimo ni (viz níž),
-          díky tomu ji nezakusuje overflow-hidden a může nahoře přesahovat ven */}
-      <div className="grid overflow-hidden rounded-card border border-cream/10 bg-night-900/95 shadow-2xl shadow-black/50 backdrop-blur-sm lg:grid-cols-2">
-        <div aria-hidden className="hidden lg:block" />
-
-        {/* dělicí linka je přesně na půlce karty (lg:border-l) */}
-        <ul className="grid grid-cols-1 sm:grid-cols-3 lg:border-l lg:border-cream/15">
-          {trustItems.map((item) => (
-            <li
-              key={item.label}
-              className="flex items-center justify-center gap-3.5 px-6 py-6 text-center sm:flex-col sm:gap-3 sm:py-8"
-            >
-              <Icon name={item.icon} className="size-8 text-turquoise sm:size-9" />
-              <span className="text-sm font-bold leading-snug text-cream sm:max-w-[9rem]">
-                {item.label}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
+    <div className="grid overflow-hidden rounded-card border border-cream/10 bg-night-900/95 shadow-2xl shadow-black/50 backdrop-blur-sm lg:grid-cols-[1fr_3fr]">
       {/*
-        Fotka lusku je transparentní produktový výřez, ne fotka na celou
-        plochu — proto object-contain (nic z lusku neuřízne) místo
-        object-cover (to useklo vzpřímený lusk úplně nahoře). Vrstva leží
-        nad kartou mimo její overflow-hidden a přesahuje přes její horní
-        okraj, takže lusk může vizuálně vystupovat ven z rámu.
+        Lusk vyplňuje jen levou čtvrtinu karty — object-position „right top"
+        drží horní a pravou hranu lusku neořezanou, ořez jde jen zleva/zdola.
+        Bez dělicí linky mezi fotkou a ikonami.
       */}
-      <div className="pointer-events-none absolute -top-8 bottom-3 left-3 hidden w-[42%] lg:block">
+      <div className="relative hidden lg:block">
         <Image
           src="/images/kakaovy-lusk.webp"
           alt="Rozkrojený kakaový lusk s boby"
           fill
-          sizes="30vw"
-          className="object-contain object-bottom"
+          sizes="20vw"
+          className="object-cover object-right-top"
         />
       </div>
+
+      <ul className="grid grid-cols-1 sm:grid-cols-3">
+        {trustItems.map((item) => (
+          <li
+            key={item.label}
+            className="flex items-center justify-center gap-3.5 px-6 py-6 text-center sm:flex-col sm:gap-3 sm:py-8"
+          >
+            <Icon name={item.icon} className="size-8 text-turquoise sm:size-9" />
+            <span className="text-sm font-bold leading-snug text-cream sm:max-w-[9rem]">
+              {item.label}
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

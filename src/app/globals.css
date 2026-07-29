@@ -1,35 +1,40 @@
 @import "tailwindcss";
 
 /*
- * Design systém Kousek Bali.
+ * EXPERIMENTÁLNÍ MODRO-TYRKYSOVÝ MOTIV (branch experiment/svetly-motiv,
+ * nemergovat do main bez schválení). Druhá iterace: čistě bílé plochy
+ * s tmavým textem nakonec zavrženy — logo existuje jen v modré nebo
+ * bílé verzi, takže černý text k němu nesedí. Tahle verze místo toho
+ * bere PŮVODNÍ tmavou paletu a "night" škálu posouvá ze skoro černé
+ * (petrolejová, nízká sytost) k výrazně sytější tyrkysovo-modré — pořád
+ * dost tmavé na bílý text, ale vizuálně mnohem míň "černé" a víc
+ * brandové. Text (cream/cream-muted) zůstává světlý jako v původní
+ * tmavé verzi — nic se needit, jen se posunula škála pozadí.
  *
- * Celá paleta stojí na tyrkysové z klientova loga (#27a8b3, vzorkovaná
- * přímo z vektoru). Tyrkysová je zároveň barva značky i barva akcí —
- * CTA, ceny, ikony, pruh benefitů. Plochy jsou tmavá petrolejová,
- * ne zelená. Teplo do webu vnáší fotky (kakao, lusky), ne barva UI.
- *
- * Tokeny se ladí jen tady. V komponentách používej utility třídy
- * (bg-night-900, text-turquoise, border-cream/10), nikdy hex natvrdo.
+ * Kontrast ověřený výpočtem (ne od oka): cream na night-950 10,6:1,
+ * na night-900 8,7:1, na night-850 7,1:1 — všude nad WCAG AA (4,5:1).
+ * Tyrkysové ikony na night-850 jsou nejslabší (2,8:1), pořád nad
+ * hranicí 3:1 pro netextové grafické prvky.
  */
 @theme {
-  /* plochy — tmavá petrolejová, od skoro černé po karty */
-  --color-night-950: #061f1e;
-  --color-night-900: #0a2726;
-  --color-night-850: #0e302f;
-  --color-night-800: #133b3a;
-  --color-night-700: #1c4d4c;
+  /* plochy — sytá tmavě tyrkysová/petrolejová, ne skoro černá */
+  --color-night-950: #073c42;
+  --color-night-900: #0a4a52;
+  --color-night-850: #0e5860;
+  --color-night-800: #12656e;
+  --color-night-700: #187a84;
 
-  /* tyrkysová z loga — značka i akce zároveň */
+  /* tyrkysová z loga — beze změny, to je jediná barva, co se nehýbe */
   --color-turquoise: #27a8b3;
   --color-turquoise-light: #5cc7d0;
   --color-turquoise-dark: #1b7d86;
 
-  /* teplá terakota — rezerva na drobné detaily, plošně se nepoužívá */
+  /* teplá terakota — rezerva na drobné detaily */
   --color-terracotta: #8a5a3b;
 
-  /* text — krémová, nikdy čistě bílá */
+  /* text — světlý jako v původní tmavé verzi, nikdy čistě bílý */
   --color-cream: #f4efe4;
-  --color-cream-muted: #9fb5b3;
+  --color-cream-muted: #b9cbc8;
 
   /* poloměry — měkké, zaoblené tvary jako v logu */
   --radius-card: 1.25rem;

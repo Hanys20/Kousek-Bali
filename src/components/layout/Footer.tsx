@@ -99,7 +99,10 @@ export function Footer() {
         </div>
 
         <div className="mt-14 border-t border-cream/10 pt-7 text-center text-xs text-cream-muted">
-          <p>© {new Date().getFullYear()} Kousek Bali. Všechna práva vyhrazena.</p>
+          <p>
+            © {new Date().getFullYear()} Kousek Bali, IČO 22253327. Všechna
+            práva vyhrazena.
+          </p>
         </div>
       </div>
     </footer>

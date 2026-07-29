@@ -89,13 +89,6 @@ export function Header() {
 
           <CartLink />
 
-          <Link
-            href="/#kakao"
-            className="hidden rounded-full bg-turquoise px-6 py-2.5 font-brand text-sm font-bold uppercase tracking-wide text-night-950 transition-colors hover:bg-turquoise-light sm:inline-flex"
-          >
-            Ochutnat kakao
-          </Link>
-
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
@@ -156,13 +149,6 @@ export function Header() {
               </li>
             ))}
           </ul>
-          <Link
-            href="/#kakao"
-            onClick={() => setMenuOpen(false)}
-            className="mt-5 flex w-full items-center justify-center rounded-full bg-turquoise px-6 py-3.5 font-brand font-bold uppercase tracking-wide text-night-950"
-          >
-            Ochutnat kakao
-          </Link>
 
           <div className="mt-6 flex justify-center gap-3 border-t border-cream/10 pt-6">
             {socials

@@ -7,11 +7,15 @@ import { Icon } from "@/components/ui/Icon";
 export function OriginStory() {
   return (
     <section className="relative overflow-hidden py-24 lg:py-32">
-      {/* vzor kakaových listů přes celou šířku, okraje sekce ho ořezávají */}
+      {/*
+        Vzor kakaových listů přes celou šířku — aspect-ratio přesně podle
+        zdrojového SVG (2667:1500), takže se nic neořezává shora ani zdola,
+        jen ho případně ořízne pravý/levý okraj sekce.
+      */}
       <LeafDecor
         src="/icons/cocoa-pattern.svg"
-        maskSize="100% auto"
-        className="inset-x-0 top-0 h-80 w-full sm:h-96"
+        maskSize="100% 100%"
+        className="inset-x-0 top-0 aspect-[2667/1500] w-full"
       />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">

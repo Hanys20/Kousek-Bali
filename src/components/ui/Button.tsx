@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 type ButtonProps = {
   href: string;
   children: ReactNode;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "glass";
   size?: "md" | "lg";
   className?: string;
 };
@@ -27,6 +27,8 @@ const variants = {
     "border border-cream/30 text-cream hover:border-cream/70 hover:bg-cream/5",
   // textový odkaz se šipkou
   ghost: "text-turquoise hover:text-turquoise-light px-0",
+  // matné sklo — pro CTA sedící přímo na fotce (viz .liquid-glass)
+  glass: "liquid-glass text-cream hover:text-turquoise",
 };
 
 export function Button({

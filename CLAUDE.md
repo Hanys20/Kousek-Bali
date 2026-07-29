@@ -18,12 +18,22 @@ Tmavá jungle estetika, prémiový rituál, ne běžný e-shop s potravinami.
 - **Barvy**: celá paleta stojí na **tyrkysové `#27a8b3`** vzorkované přímo
   z vektorového loga (logo se nikdy nepřebarvuje). Tyrkysová je zároveň
   barva značky i barva akcí — CTA, ceny, ikony, pruh benefitů. Plochy jsou
-  tmavá petrolejová `night-950`–`night-700` (`#061f1e`–`#1c4d4c`), **ne
-  zelená**. Text krémový `#f4efe4`, nikdy čistě bílý. Teplo dodávají fotky
-  (kakao, lusky), ne barva UI. Terakota `#8a5a3b` je rezerva na drobnosti.
-  Tokeny jsou v `src/app/globals.css` (`@theme`) — nikdy nezadávej hex
-  natvrdo v komponentách. Všechny kombinace textu a pozadí procházejí
-  WCAG AA (nejnižší je tyrkysová na kartě, 4,95:1).
+  sytá tyrkysovo-modrá `night-950`–`night-700` (`#073c42`–`#187a84`), **ne
+  zelená a ne skoro černá** — druhé jméno vzniklo z experimentu se
+  světlým motivem (bílé plochy + černý text), který se zavrhl, protože
+  logo existuje jen v modré nebo bílé verzi a černý text k němu nesedí.
+  Text krémový `#f4efe4`, nikdy čistě bílý. Teplo dodávají fotky (kakao,
+  lusky), ne barva UI. Terakota `#8a5a3b` je rezerva na drobnosti. Tokeny
+  jsou v `src/app/globals.css` (`@theme`) — nikdy nezadávej hex natvrdo
+  v komponentách. Kontrast ověřený výpočtem: cream na night-950 10,6:1,
+  na night-900 8,7:1, na night-850 7,1:1 (WCAG AA je 4,5:1); tyrkysové
+  ikony na night-850 jsou nejslabší místo s 2,8:1 (nad hranicí 3:1 pro
+  netextovou grafiku).
+- **"Liquid glass"** (`.liquid-glass` v globals.css): matné sklo pro prvky
+  sedící přímo na hero fotce (pilulková navigace, košík, sekundární CTA
+  `Button variant="glass"`) — gradient + silný `backdrop-filter: blur`
+  + vnitřní highlight. Používej jen na prvcích nad fotkou, na plné barvě
+  pozadí to nedává smysl (nic průhledného pod sklem prosvítat nebude).
 - **Typografie**:
   - `font-brand` = Yoshida Sans (font z loga) — **nadpisy (h1–h3) a tlačítka**.
     **Zásadní pravidlo: Yoshida se používá VÝHRADNĚ VERZÁLKAMI
@@ -41,8 +51,26 @@ Tmavá jungle estetika, prémiový rituál, ne běžný e-shop s potravinami.
   - `font-sans` = Inter — UI a delší texty (popisky, odstavce, navigace).
 - **Ikony**: čárová sada od klienta v `public/icons/`. Jsou to černé kresby,
   barví se přes CSS mask komponentou `<Icon>` — barvu řídí `text-*` třída.
+  **Žádná ikona se na homepage nesmí opakovat** (jednoduše zaměnitelné
+  ikony vedle sebe jinak matou, viz proč se „Ručně zpracované“ přesunulo
+  z `pece` na `hmozdir`). Než přidáš/přesuneš ikonu, zkontroluj duplicity:
+  `grep -rh 'icon: "\|Icon name="' src/components/sections/*.tsx | sort | uniq -c`.
+- **Cocoa pattern** (`public/icons/cocoa-pattern.svg`): dekorativní vzor
+  kakaových listů/lusků, stejná technika jako `LeafDecor` (CSS mask,
+  velmi nízká krytost `bg-cream/[0.04]`). `LeafDecor` bere `src` jako prop,
+  výchozí je `list.svg`.
 - **Nálada**: klidná, jasná, radostná, přírodní. Fotky dělají většinu práce,
   text je stručný. Žádný přeplácaný layout — jedna myšlenka na sekci.
+
+## Struktura webu
+
+Web je většinou jednostránkový — jediná samostatná podstránka je `/o-nas`
+(delší text, vlastní stránka dává smysl). Zbytek (Kakao, Jak připravit, FAQ)
+jsou sekce na homepage s `id` + `scroll-mt-24`, na které se odkazuje kotvou
+(`/#kakao`, `/#navod`, `/#faq`) i z jiných stránek. Není samostatná stránka
+s výpisem produktů ani detail produktu — e-shop má natrvalo jen dva produkty,
+zobrazené přímo v `ProductGrid` na homepage; přidat/ubrat produkt znamená
+upravit `products` tabulku v Supabase, ne přidat route.
 
 ## Materiály od klienta
 
@@ -55,9 +83,18 @@ při přidání dalších fotek je potřeba je znovu převést.
 
 - **Žádná vymyšlená hodnocení ani čísla.** E-shop zatím nemá recenze, takže
   se hvězdičky nezobrazují (v kartě je místo nich hmotnost balení).
-- Ceny v `src/lib/products.ts` (respektive v tabulce `products` v Supabase)
-  odpovídají zadání (0,5 kg = 1 100 Kč, 1 kg = 2 000 Kč). Třetí produkt je
-  placeholder, než ho klient doplní.
+- Ceny v tabulce `products` v Supabase odpovídají zadání (0,5 kg = 1 100 Kč,
+  1 kg = 2 000 Kč). Katalog je natrvalo jen tyhle dva produkty (viz
+  „Struktura webu“ výš) — žádné „boby“ ani další varianty se nechystají.
+- **Hover fotka produktu** (`ProductCard.tsx`): odvozuje se z hlavní fotky
+  přesmyčkou přípony (`produkt-500g.webp` → `produkt-500g-hover.webp`), ne
+  z vlastního pole v databázi. Když přidáváš nový produkt, musí mít
+  v `public/images/` fotku i pod stejným názvem s `-hover` příponou, jinak
+  se při najetí myší zobrazí rozbitý obrázek.
+- **Kontaktní osoba** v patičce je Štěpánka Kielkovská (ne Jan Kielkovský,
+  který zůstává coby IČO/plátce na právních stránkách) — telefon
+  `+420 773 334 477` je zatím totožný s WhatsApp číslem klienta, není
+  ověřeno, že je to i telefon pro běžné hovory.
 - **Reálný příběh značky** (z letáku, viz `/o-nas` a homepage): zakladatelé
   jsou **Štěpánka a Honza**, kakao objevili na svatební cestě na Bali. Kakao
   se dováží od balijské čokoládovny **Ubud Raw**, která podporuje lokální
@@ -124,11 +161,12 @@ Bali, Indonésie, kakao z Bali
 ## Stav / postup prací
 
 1. ✅ Kostra projektu (struktura složek, git)
-2. ✅ Design systém (barvy, typografie) + homepage s placeholder texty v ČJ
-3. ⏳ E-shop: výpis produktů + detail produktu
-4. ⏳ Checkout s QR platbou + napojení Supabase
-5. ⏳ Cloudflare Workers deploy + doména kousekbali.cz (pozor: MX na
-   Webglobe kvůli info@kousekbali.cz, musí se přenést spolu s DNS)
+2. ✅ Design systém (barvy, typografie) + homepage s reálnými texty v ČJ
+3. ✅ Katalog dvou produktů napojený na Supabase, zobrazený přímo na
+   homepage (žádná samostatná stránka výpisu/detailu)
+4. ✅ Cloudflare Workers deploy + doména kousekbali.cz (MX zůstal na
+   Webglobe, e-mail funguje beze změny)
+5. ⏳ Checkout s QR platbou (košík `/eshop/kosik` je zatím placeholder)
 
 Právní stránky (obchodní podmínky, ochrana údajů, cookies) jsou povinné
 kvůli e-shopu — nezapomenout před spuštěním.

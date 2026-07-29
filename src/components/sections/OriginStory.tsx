@@ -7,7 +7,12 @@ import { Icon } from "@/components/ui/Icon";
 export function OriginStory() {
   return (
     <section className="relative overflow-hidden py-24 lg:py-32">
-      <LeafDecor className="-right-16 top-10 size-96 rotate-12" />
+      {/* vzor kakaových listů přes celou šířku, okraje sekce ho ořezávají */}
+      <LeafDecor
+        src="/icons/cocoa-pattern.svg"
+        maskSize="100% auto"
+        className="inset-x-0 top-0 h-80 w-full sm:h-96"
+      />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
@@ -24,7 +29,7 @@ export function OriginStory() {
 
             {/* Odznak přesahuje přes roh fotky — drží se reálného zpracování od Ubud Raw. */}
             <div className="absolute -bottom-7 left-4 flex items-center gap-3.5 rounded-2xl border border-turquoise/25 bg-night-850 px-6 py-4 shadow-xl shadow-black/40 sm:-left-7">
-              <Icon name="ekologie" className="size-8 text-turquoise" />
+              <Icon name="slunce" className="size-8 text-turquoise" />
               <p className="text-sm font-bold leading-tight text-cream">
                 Bez pražení
                 <span className="block text-cream-muted">sušené na slunci</span>

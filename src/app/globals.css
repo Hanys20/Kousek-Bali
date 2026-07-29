@@ -1,15 +1,11 @@
 @import "tailwindcss";
 
 /*
- * EXPERIMENTÁLNÍ MODRO-TYRKYSOVÝ MOTIV (branch experiment/svetly-motiv,
- * nemergovat do main bez schválení). Druhá iterace: čistě bílé plochy
- * s tmavým textem nakonec zavrženy — logo existuje jen v modré nebo
- * bílé verzi, takže černý text k němu nesedí. Tahle verze místo toho
- * bere PŮVODNÍ tmavou paletu a "night" škálu posouvá ze skoro černé
- * (petrolejová, nízká sytost) k výrazně sytější tyrkysovo-modré — pořád
- * dost tmavé na bílý text, ale vizuálně mnohem míň "černé" a víc
- * brandové. Text (cream/cream-muted) zůstává světlý jako v původní
- * tmavé verzi — nic se needit, jen se posunula škála pozadí.
+ * Design systém Kousek Bali — sytá tmavě tyrkysová/modrá paleta (vzešlá
+ * z experimentu se světlým motivem: čistě bílé plochy s tmavým textem
+ * byly zavrženy, protože logo existuje jen v modré nebo bílé verzi
+ * a černý text k němu nesedí). Text (cream/cream-muted) zůstává světlý,
+ * tyrkysová (#27a8b3) je beze změny — to je jediná barva, co se nehýbe.
  *
  * Kontrast ověřený výpočtem (ne od oka): cream na night-950 10,6:1,
  * na night-900 8,7:1, na night-850 7,1:1 — všude nad WCAG AA (4,5:1).
@@ -73,6 +69,26 @@ body {
     color-mix(in srgb, var(--color-cream) 12%, transparent),
     transparent
   );
+}
+
+/*
+ * "Liquid glass" — matné sklo pro prvky sedící přímo na hero fotce
+ * (navigace, košík, sekundární CTA). Jemný gradient místo ploché barvy
+ * + silný blur dává dojem prohnutého skla, vnitřní highlight nahoře
+ * napodobuje odlesk na hraně.
+ */
+.liquid-glass {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-cream) 20%, transparent),
+    color-mix(in srgb, var(--color-cream) 6%, transparent)
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid color-mix(in srgb, var(--color-cream) 28%, transparent);
+  box-shadow:
+    inset 0 1px 1px color-mix(in srgb, var(--color-cream) 35%, transparent),
+    0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 /* viditelný focus pro ovládání klávesnicí */

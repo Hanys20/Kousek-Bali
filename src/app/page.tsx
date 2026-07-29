@@ -5,8 +5,9 @@ import { OriginStory } from "@/components/sections/OriginStory";
 import { ProductGrid } from "@/components/sections/ProductGrid";
 import { BenefitsBar } from "@/components/sections/BenefitsBar";
 import { RitualSteps } from "@/components/sections/RitualSteps";
+import { Faq } from "@/components/sections/Faq";
 import { Testimonial } from "@/components/sections/Testimonial";
-import { StatsBar } from "@/components/sections/StatsBar";
+import { NewsletterBand } from "@/components/sections/NewsletterBand";
 
 export default function Home() {
   return (
@@ -18,8 +19,9 @@ export default function Home() {
         <ProductGrid />
         <BenefitsBar />
         <RitualSteps />
+        <Faq />
         <Testimonial />
-        <StatsBar />
+        <NewsletterBand />
       </main>
       <Footer />
     </>

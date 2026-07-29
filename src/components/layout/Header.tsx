@@ -3,12 +3,15 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
+import { socials, SocialLink } from "@/components/ui/SocialLinks";
 
+// Kakao/Jak připravit/FAQ jsou sekce na homepage (kotva), ne vlastní stránky —
+// e-shop má jen dva produkty a nepotřebuje samostatnou stránku s výpisem.
 const navItems = [
-  { href: "/eshop", label: "Kakao" },
+  { href: "/#kakao", label: "Kakao" },
   { href: "/o-nas", label: "Náš příběh" },
-  { href: "/navod", label: "Jak připravit" },
-  { href: "/o-bali", label: "O Bali" },
+  { href: "/#navod", label: "Jak připravit" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export function Header() {
@@ -50,9 +53,9 @@ export function Header() {
           <Logo className="h-10 w-auto sm:h-11" />
         </Link>
 
-        {/* pilulková navigace uprostřed (desktop) */}
+        {/* pilulková navigace uprostřed (desktop) — matné sklo na hero fotce */}
         <nav className="hidden lg:block">
-          <ul className="tracked-label flex items-center gap-1 rounded-full border border-cream/10 bg-night-900/70 p-1.5 text-[0.68rem] font-bold text-cream/80 backdrop-blur">
+          <ul className="liquid-glass tracked-label flex items-center gap-1 rounded-full p-1.5 text-[0.68rem] font-bold text-cream/90">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
@@ -67,10 +70,27 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* sociální sítě — drobné, jen vedle sebe, ať menu nepůsobí zahlceně */}
+          <div className="hidden items-center gap-1 lg:flex">
+            {socials
+              .filter((s) => s.href)
+              .map((s) => (
+                <SocialLink
+                  key={s.label}
+                  href={s.href!}
+                  label={s.label}
+                  className="flex size-8 items-center justify-center rounded-full text-cream/70 transition-colors hover:text-turquoise"
+                  iconSize={15}
+                >
+                  {s.path}
+                </SocialLink>
+              ))}
+          </div>
+
           <CartLink />
 
           <Link
-            href="/eshop"
+            href="/#kakao"
             className="hidden rounded-full bg-turquoise px-6 py-2.5 font-brand text-sm font-bold uppercase tracking-wide text-night-950 transition-colors hover:bg-turquoise-light sm:inline-flex"
           >
             Ochutnat kakao
@@ -137,12 +157,22 @@ export function Header() {
             ))}
           </ul>
           <Link
-            href="/eshop"
+            href="/#kakao"
             onClick={() => setMenuOpen(false)}
             className="mt-5 flex w-full items-center justify-center rounded-full bg-turquoise px-6 py-3.5 font-brand font-bold uppercase tracking-wide text-night-950"
           >
             Ochutnat kakao
           </Link>
+
+          <div className="mt-6 flex justify-center gap-3 border-t border-cream/10 pt-6">
+            {socials
+              .filter((s) => s.href)
+              .map((s) => (
+                <SocialLink key={s.label} href={s.href!} label={s.label}>
+                  {s.path}
+                </SocialLink>
+              ))}
+          </div>
         </nav>
       </div>
     </header>
@@ -156,7 +186,7 @@ function CartLink() {
     <Link
       href="/eshop/kosik"
       aria-label={`Košík — ${count} položek`}
-      className="relative flex size-10 items-center justify-center rounded-full border border-cream/15 text-cream transition-colors hover:bg-cream/10"
+      className="liquid-glass relative flex size-10 items-center justify-center rounded-full text-cream transition-colors hover:text-turquoise"
     >
       <svg
         width="19"

@@ -1,6 +1,5 @@
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Icon, type IconName } from "@/components/ui/Icon";
-import { Button, ArrowRight } from "@/components/ui/Button";
 
 const steps: { icon: IconName; title: string; description: string }[] = [
   {
@@ -15,7 +14,7 @@ const steps: { icon: IconName; title: string; description: string }[] = [
       "Zalij malým množstvím vody a zahřívej na mírném ohni — ideální teplota je do 75 °C, kakao se nesmí vařit.",
   },
   {
-    icon: "hmozdir",
+    icon: "napoj",
     title: "Rozmíchej",
     description:
       "Přilij 150–200 ml oblíbeného mléka (třeba ovesného) a pomalu míchej. Podle chuti osladíš kokosovým cukrem nebo medem.",
@@ -29,7 +28,7 @@ const steps: { icon: IconName; title: string; description: string }[] = [
 
 export function RitualSteps() {
   return (
-    <section className="py-24 lg:py-32">
+    <section id="navod" className="scroll-mt-24 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <SectionLabel>Jak připravit</SectionLabel>
@@ -58,13 +57,6 @@ export function RitualSteps() {
             </li>
           ))}
         </ol>
-
-        <div className="mt-12 text-center">
-          <Button href="/navod" variant="ghost">
-            Podrobný návod s videem
-            <ArrowRight />
-          </Button>
-        </div>
       </div>
     </section>
   );

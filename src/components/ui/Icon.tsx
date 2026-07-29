@@ -15,7 +15,12 @@ export type IconName =
   | "kvet"
   | "meditace"
   | "list"
-  | "farmari";
+  | "farmari"
+  | "slunce"
+  | "eticky-puvod"
+  | "udrzitelnost"
+  | "bio"
+  | "napoj";
 
 type IconProps = {
   name: IconName;

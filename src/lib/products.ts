@@ -34,18 +34,3 @@ export async function getProducts(): Promise<Product[]> {
 
   return (data ?? []).map(toProduct);
 }
-
-export async function getProductBySlug(slug: string): Promise<Product | null> {
-  const { data, error } = await supabase
-    .from("products")
-    .select("*")
-    .eq("slug", slug)
-    .eq("active", true)
-    .maybeSingle();
-
-  if (error) {
-    throw new Error(`Nepodařilo se načíst produkt ${slug}: ${error.message}`);
-  }
-
-  return data ? toProduct(data) : null;
-}

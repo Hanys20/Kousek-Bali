@@ -3,11 +3,15 @@
 export function LeafDecor({
   className = "",
   flip = false,
+  src = "/icons/list.svg",
+  maskSize = "contain",
 }: {
   className?: string;
   flip?: boolean;
+  src?: string;
+  maskSize?: string;
 }) {
-  const url = "url(/icons/list.svg)";
+  const url = `url(${src})`;
   return (
     <span
       aria-hidden
@@ -15,10 +19,12 @@ export function LeafDecor({
       style={{
         maskImage: url,
         WebkitMaskImage: url,
-        maskSize: "contain",
-        WebkitMaskSize: "contain",
+        maskSize,
+        WebkitMaskSize: maskSize,
         maskRepeat: "no-repeat",
         WebkitMaskRepeat: "no-repeat",
+        maskPosition: "top center",
+        WebkitMaskPosition: "top center",
         transform: flip ? "scaleX(-1)" : undefined,
       }}
     />

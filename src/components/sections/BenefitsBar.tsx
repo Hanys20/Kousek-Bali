@@ -1,13 +1,13 @@
 import { Icon, type IconName } from "@/components/ui/Icon";
 
 const benefits: { icon: IconName; label: string }[] = [
-  { icon: "ekologie", label: "Etický původ" },
-  { icon: "kakao", label: "Čisté složení" },
-  { icon: "pece", label: "Malé šarže" },
-  { icon: "doprava", label: "Doprava z Česka" },
+  { icon: "eticky-puvod", label: "Etický původ" },
+  { icon: "sto-procent", label: "Čisté složení" },
+  { icon: "udrzitelnost", label: "Udržitelný přístup" },
+  { icon: "bio", label: "Bio kvalita" },
 ];
 
-// Barevně nejvýraznější pruh na stránce — dělá zlatý předěl mezi sekcemi.
+// Barevně nejvýraznější pruh na stránce — dělá tyrkysový předěl mezi sekcemi.
 export function BenefitsBar() {
   return (
     <section className="bg-turquoise text-night-950">

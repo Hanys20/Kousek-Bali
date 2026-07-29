@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Button, ArrowRight } from "@/components/ui/Button";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
 export function Hero() {
@@ -16,14 +15,18 @@ export function Hero() {
           className="object-cover"
         />
 
-        {/* rovnoměrné ztmavení pro čitelnost textu — žádný přechod do ztracena */}
-        <div className="absolute inset-0 bg-night-950/45" />
+        {/*
+          Neutrální černé ztmavení — dřív night-950 (tyrkysovo-modrá) dávalo
+          fotce barevný nádech, který tam neměl být. Černá tón fotky
+          neovlivňuje, jen ji ztlumí pro čitelnost textu.
+        */}
+        <div className="absolute inset-0 bg-black/48" />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 pb-28 pt-32 text-center sm:px-8 lg:pb-36">
           <div className="mx-auto max-w-2xl">
-            <SectionLabel className="text-center">
+            <span className="tracked-label block text-sm font-extrabold text-cream drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] sm:text-base">
               Ceremoniální kakao přímo z Bali
-            </SectionLabel>
+            </span>
 
             {/* Yoshida v kombinaci řezů: tučný akcent + lehčí pokračování */}
             <h1 className="mt-5 font-brand text-4xl uppercase leading-[1.05] text-cream sm:text-6xl lg:text-[4.25rem]">
@@ -38,11 +41,11 @@ export function Hero() {
             </p>
 
             <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <Button href="/eshop" size="lg">
+              <Button href="/#kakao" size="lg">
                 Objevit kakao
                 <ArrowRight />
               </Button>
-              <Button href="/o-nas" variant="secondary" size="lg">
+              <Button href="/o-nas" variant="glass" size="lg">
                 Náš příběh
               </Button>
             </div>
@@ -60,8 +63,8 @@ export function Hero() {
 
 const trustItems: { icon: IconName; label: string }[] = [
   { icon: "kakao", label: "100 % čisté kakao" },
-  { icon: "ekologie", label: "Přímo od farmářů" },
-  { icon: "pece", label: "Ručně zpracované" },
+  { icon: "farmari", label: "Přímo od farmářů" },
+  { icon: "hmozdir", label: "Ručně zpracované" },
 ];
 
 function TrustBar() {
@@ -70,7 +73,6 @@ function TrustBar() {
       {/*
         Lusk vyplňuje jen levou čtvrtinu karty — object-position „right top"
         drží horní a pravou hranu lusku neořezanou, ořez jde jen zleva/zdola.
-        Bez dělicí linky mezi fotkou a ikonami.
       */}
       <div className="relative hidden lg:block">
         <Image

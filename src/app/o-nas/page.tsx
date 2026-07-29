@@ -110,7 +110,7 @@ export default function ONasPage() {
             </p>
 
             <div className="mt-10">
-              <Button href="/eshop">
+              <Button href="/#kakao">
                 Ochutnat kakao
                 <ArrowRight />
               </Button>

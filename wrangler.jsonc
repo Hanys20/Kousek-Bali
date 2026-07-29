@@ -8,5 +8,14 @@
   // Supabase edge funkce, ne tento Worker.
   "assets": {
     "directory": "./out"
-  }
+  },
+  // preview URL na *.workers.dev necháváme zapnutou jako záložní adresu
+  "workers_dev": true,
+  // Custom domains — Cloudflare spravuje DNS routing k tomuto Workeru
+  // automaticky. Nemá to vliv na MX/TXT záznamy (poštu Webglobe), routuje
+  // se jen HTTP(S) provoz.
+  "routes": [
+    { "pattern": "kousekbali.cz", "custom_domain": true },
+    { "pattern": "www.kousekbali.cz", "custom_domain": true }
+  ]
 }

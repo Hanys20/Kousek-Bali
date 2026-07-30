@@ -69,35 +69,43 @@ const trustItems: { icon: IconName; label: string }[] = [
 
 function TrustBar() {
   return (
-    <div className="grid overflow-hidden rounded-card border border-cream/10 bg-night-900/95 shadow-2xl shadow-black/50 backdrop-blur-sm lg:grid-cols-[1fr_3fr]">
+    <div className="relative">
+      <div className="grid overflow-hidden rounded-card border border-cream/10 bg-night-900/95 shadow-2xl shadow-black/50 backdrop-blur-sm lg:grid-cols-[1fr_3fr]">
+        {/* prázdná rezervace místa — lusk samotný je samostatná vrstva níž */}
+        <div aria-hidden className="hidden lg:block" />
+
+        <ul className="grid grid-cols-1 sm:grid-cols-3">
+          {trustItems.map((item) => (
+            <li
+              key={item.label}
+              className="flex items-center justify-center gap-3.5 px-6 py-6 text-center sm:flex-col sm:gap-3 sm:py-8"
+            >
+              <Icon name={item.icon} className="size-8 text-turquoise sm:size-9" />
+              <span className="text-sm font-bold leading-snug text-cream sm:max-w-[9rem]">
+                {item.label}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       {/*
-        Lusk vyplňuje jen levou čtvrtinu karty. Mírné přiblížení (scale-125)
-        + posun kotvy až úplně nahoru odstraňuje prázdný prostor pod luskem,
-        který tam s prostým "object-cover" zůstával.
+        Lusk je samostatná vrstva MIMO overflow-hidden kartu, takže ho
+        nic neořezává shora ani zprava. Zvětšení roste od pravého dolního
+        rohu (origin-bottom-right), takže dole a vpravo... pozor: chceme
+        ořez jen dole a vlevo, přesah nahoře a vpravo — proto kotva
+        vlevo dole (origin-bottom-left): odtud fotka roste nahoru
+        a doprava, dole/vlevo zůstává přesně na hraně karty.
       */}
-      <div className="relative hidden overflow-hidden lg:block">
+      <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/4 lg:block">
         <Image
           src="/images/kakaovy-lusk.webp"
           alt="Rozkrojený kakaový lusk s boby"
           fill
           sizes="20vw"
-          className="scale-125 object-cover object-[75%_0%]"
+          className="origin-bottom-left scale-125 object-cover object-[75%_0%]"
         />
       </div>
-
-      <ul className="grid grid-cols-1 sm:grid-cols-3">
-        {trustItems.map((item) => (
-          <li
-            key={item.label}
-            className="flex items-center justify-center gap-3.5 px-6 py-6 text-center sm:flex-col sm:gap-3 sm:py-8"
-          >
-            <Icon name={item.icon} className="size-8 text-turquoise sm:size-9" />
-            <span className="text-sm font-bold leading-snug text-cream sm:max-w-[9rem]">
-              {item.label}
-            </span>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

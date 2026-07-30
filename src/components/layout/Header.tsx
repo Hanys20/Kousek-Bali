@@ -172,7 +172,10 @@ function CartLink() {
     <Link
       href="/eshop/kosik"
       aria-label={`Košík — ${count} položek`}
-      className="liquid-glass relative flex size-10 items-center justify-center rounded-full text-cream transition-colors hover:text-turquoise"
+      // Na telefonu obyčejný orámovaný kruh (sklo na malé ploše ikony
+      // vypadalo špinavě), od `lg` matné sklo. Hover stejný jako položky
+      // v pilulkové navigaci (bg-cream/10 + text-cream, ne jen tyrkysová).
+      className="relative flex size-10 items-center justify-center rounded-full text-cream transition-colors max-lg:border max-lg:border-cream/15 hover:bg-cream/10 hover:text-cream lg:liquid-glass"
     >
       <svg
         width="19"

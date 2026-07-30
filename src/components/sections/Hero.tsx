@@ -71,16 +71,17 @@ function TrustBar() {
   return (
     <div className="grid overflow-hidden rounded-card border border-cream/10 bg-night-900/95 shadow-2xl shadow-black/50 backdrop-blur-sm lg:grid-cols-[1fr_3fr]">
       {/*
-        Lusk vyplňuje jen levou čtvrtinu karty — object-position „right top"
-        drží horní a pravou hranu lusku neořezanou, ořez jde jen zleva/zdola.
+        Lusk vyplňuje jen levou čtvrtinu karty. Mírné přiblížení (scale-125)
+        + posun kotvy až úplně nahoru odstraňuje prázdný prostor pod luskem,
+        který tam s prostým "object-cover" zůstával.
       */}
-      <div className="relative hidden lg:block">
+      <div className="relative hidden overflow-hidden lg:block">
         <Image
           src="/images/kakaovy-lusk.webp"
           alt="Rozkrojený kakaový lusk s boby"
           fill
           sizes="20vw"
-          className="object-cover object-right-top"
+          className="scale-125 object-cover object-[75%_0%]"
         />
       </div>
 

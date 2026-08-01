@@ -1,5 +1,6 @@
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Icon, type IconName } from "@/components/ui/Icon";
+import { LeafDecor } from "@/components/ui/LeafDecor";
 
 const steps: { icon: IconName; title: string; description: string }[] = [
   {
@@ -14,7 +15,7 @@ const steps: { icon: IconName; title: string; description: string }[] = [
       "Zalij malým množstvím vody a zahřívej na mírném ohni — ideální teplota je do 75 °C, kakao se nesmí vařit.",
   },
   {
-    icon: "napoj",
+    icon: "michani",
     title: "Rozmíchej",
     description:
       "Přilij 150–200 ml oblíbeného mléka (třeba ovesného) a pomalu míchej. Podle chuti osladíš kokosovým cukrem nebo medem.",
@@ -28,8 +29,15 @@ const steps: { icon: IconName; title: string; description: string }[] = [
 
 export function RitualSteps() {
   return (
-    <section id="navod" className="scroll-mt-24 py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <section id="navod" className="scroll-mt-24 relative overflow-hidden py-24 lg:py-32">
+      {/* stejný vzor jako v sekci "Od farmářů až k vám", ať sekce vizuálně ladí */}
+      <LeafDecor
+        src="/icons/cocoa-pattern.svg"
+        maskSize="100% 100%"
+        className="inset-x-0 top-0 aspect-[2667/1500] w-full"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <SectionLabel>Jak připravit</SectionLabel>
           <h2 className="mt-5 font-brand text-3xl uppercase leading-tight text-cream sm:text-5xl">

@@ -20,7 +20,8 @@ export type IconName =
   | "eticky-puvod"
   | "udrzitelnost"
   | "bio"
-  | "napoj";
+  | "napoj"
+  | "michani";
 
 type IconProps = {
   name: IconName;

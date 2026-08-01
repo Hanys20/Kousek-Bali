@@ -37,8 +37,11 @@ export function Faq() {
 
         <div className="mt-12 space-y-4">
           {faqs.map((item) => (
+            // stejné `name` = nativně exkluzivní akordeon (otevření jedné
+            // otázky zavře předchozí), bez JS — podporují všechny moderní prohlížeče
             <details
               key={item.question}
+              name="faq-akordeon"
               className="group rounded-card border border-cream/10 bg-night-900 px-6 py-5 open:border-turquoise/30"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-cream marker:content-none">

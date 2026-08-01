@@ -43,10 +43,11 @@ Tmavá jungle estetika, prémiový rituál, ne běžný e-shop s potravinami.
     na „100 % ôisté kahao“). Ve verzálkách je naopak výrazný, hravý a
     čitelný a ladí s logem. Než přidáš Yoshida na nový text, zkontroluj, že
     má `uppercase` — bez něj je to bug, ne styl.
-  - **Výjimka**: citát v `Testimonial.tsx` zůstává Fraunces kurzívou, ne
-    Yoshida verzálkami — je to celá věta, ne nadpis/tlačítko, a verzálkový
-    displejový font by zabil klidnou/intimní náladu, kterou má citát mít.
-  - `font-serif` = Fraunces — ceny, velká čísla (statistiky), citát. Elegantní
+  - **Výjimka**: citát v `Testimonial.tsx` nikdy nejde do Yoshida verzálek —
+    je to celá věta, ne nadpis/tlačítko, verzálkový displejový font by zabil
+    klidnou/intimní náladu. Aktuálně `font-sans font-light` (Inter, ne
+    kurzíva) — původně tam byl Fraunces kurzívou, změněno na přání klienta.
+  - `font-serif` = Fraunces — ceny, velká čísla (statistiky). Elegantní
     protiváha k hravé Yoshidě, drží klidnou náladu tam, kde nejde o CTA.
   - `font-sans` = Inter — UI a delší texty (popisky, odstavce, navigace).
 - **Ikony**: čárová sada od klienta v `public/icons/`. Jsou to černé kresby,

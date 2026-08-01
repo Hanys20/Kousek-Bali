@@ -2,12 +2,13 @@ import { Icon } from "@/components/ui/Icon";
 
 // Nahrazuje dřívější StatsBar (nedoložená čísla po quote působila zbytečně).
 // Newsletter se přesunul sem z patičky — v patičce zůstal jen kontakt.
+// border-t turquoise (ne jen cream/10) — výraznější švík od FAQ nad tím.
 export function NewsletterBand() {
   return (
-    <section className="border-t border-cream/10 bg-night-900/40">
+    <section className="border-t border-turquoise/25 bg-night-900/40">
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[auto_1fr] lg:gap-16 lg:py-16">
         <div className="flex items-center gap-4">
-          <Icon name="pece" className="hidden size-10 shrink-0 text-turquoise sm:block" />
+          <Icon name="svicka" className="hidden size-10 shrink-0 text-turquoise sm:block" />
           <div>
             <h2 className="font-brand text-2xl uppercase leading-tight text-cream sm:text-3xl">
               <span className="font-bold">Buď součástí</span>{" "}

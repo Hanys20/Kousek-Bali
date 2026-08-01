@@ -7,8 +7,8 @@ export function Hero() {
     <section className="relative">
       <div className="relative flex min-h-[42rem] items-center lg:min-h-[46rem]">
         <Image
-          src="/images/hero-jungle.webp"
-          alt="Šálek horkého kakaa a rozkrojený kakaový lusk v balijské džungli"
+          src="/images/cocoa-texture-hero.webp"
+          alt="Detailní textura pražených kakaových bobů"
           fill
           priority
           sizes="100vw"

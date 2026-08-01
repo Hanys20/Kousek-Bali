@@ -26,7 +26,7 @@ export function Testimonial() {
             <path d="M0 34V19.4C0 8.7 5.9 1.6 17.1 0l1.5 5.5c-6.3 1.3-9.6 5-9.9 10.4h9.1V34H0Zm25.4 0V19.4C25.4 8.7 31.3 1.6 42.5 0L44 5.5c-6.3 1.3-9.6 5-9.9 10.4h9.1V34H25.4Z" />
           </svg>
 
-          <p className="mt-6 font-serif text-3xl italic leading-[1.3] text-cream sm:text-4xl lg:text-[2.6rem]">
+          <p className="mt-6 font-sans text-3xl font-light leading-[1.3] tracking-tight text-cream sm:text-4xl lg:text-[2.6rem]">
             Kakao není jen nápoj. Je to pozvání zpomalit, naslouchat a být
             přítomný.
           </p>

@@ -19,8 +19,8 @@ export default function Home() {
         <ProductGrid />
         <BenefitsBar />
         <RitualSteps />
-        <Faq />
         <Testimonial />
+        <Faq />
         <NewsletterBand />
       </main>
       <Footer />

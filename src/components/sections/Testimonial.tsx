@@ -1,15 +1,61 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 export function Testimonial() {
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  // Jemný parallax — fotka se posouvá pomaleji než scroll, drží klidnou
+  // náladu citátu. Vypnuto při prefers-reduced-motion.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const el = imageRef.current;
+    if (!el) return;
+
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const rect = el.getBoundingClientRect();
+      const maxOffset = rect.height * 0.04;
+      const offset = Math.max(
+        -maxOffset,
+        Math.min(maxOffset, rect.top * 0.08),
+      );
+      el.style.transform = `translate3d(0, ${offset}px, 0)`;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
     <section className="relative isolate overflow-hidden">
-      <Image
-        src="/images/salek-kakaa.webp"
-        alt="Šálek ceremoniálního kakaa s okvětními lístky, kakaové boby a vonná tyčinka"
-        fill
-        sizes="100vw"
-        className="-z-10 object-cover object-[22%_center] lg:object-center"
-      />
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div ref={imageRef} className="absolute inset-0">
+          <Image
+            src="/images/salek-kakaa.webp"
+            alt="Šálek ceremoniálního kakaa s okvětními lístky, kakaové boby a vonná tyčinka"
+            fill
+            sizes="100vw"
+            className="scale-110 object-cover object-[22%_center] lg:object-center"
+          />
+        </div>
+      </div>
       {/* fotka má tmavou pravou půlku — scrim ji dorovná, aby citát četl i na mobilu */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-night-950/85 via-night-950/70 to-night-950/85 lg:from-night-950/10 lg:via-night-950/60 lg:to-night-950/85" />
 

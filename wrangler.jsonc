@@ -4,10 +4,13 @@
   "name": "kousek-bali",
   "compatibility_date": "2026-07-28",
   // Next.js `output: "export"` (next.config.ts) generuje statický web do out/.
-  // Žádný server-side kód tu neběží — objednávky a platby řeší
-  // Supabase edge funkce, ne tento Worker.
+  // Objednávky a platby dál řeší Supabase edge funkce, ne tento Worker —
+  // `main` tu jen vynucuje HTTPS (viz src/worker.ts) a jinak vše předává
+  // beze změny na statické assety.
+  "main": "src/worker.ts",
   "assets": {
-    "directory": "./out"
+    "directory": "./out",
+    "binding": "ASSETS"
   },
   // preview URL na *.workers.dev necháváme zapnutou jako záložní adresu
   "workers_dev": true,

@@ -118,46 +118,70 @@ export function Header() {
         </div>
       </div>
 
-      {/* ztmavení obsahu pod otevřeným menu, kliknutí menu zavře */}
-      {menuOpen && (
-        <button
-          type="button"
-          tabIndex={-1}
-          aria-hidden
-          onClick={() => setMenuOpen(false)}
-          className="fixed inset-0 -z-10 h-screen w-full cursor-default bg-night-950/80 lg:hidden"
-        />
-      )}
+      {/* ztmavení obsahu pod otevřeným menu, kliknutí menu zavře — natrvalo
+          v DOM (ne podmíněně), aby šlo zeslabení plynule prolnout oběma
+          směry, ne jen naskočit/zmizet */}
+      <button
+        type="button"
+        tabIndex={-1}
+        aria-hidden
+        inert={!menuOpen}
+        onClick={() => setMenuOpen(false)}
+        className={`fixed inset-0 -z-10 h-screen w-full cursor-default bg-night-950/80 transition-opacity duration-300 lg:hidden ${
+          menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      />
 
-      {/* mobilní menu — bez něj by web na mobilu neměl navigaci */}
+      {/* mobilní menu — bez něj by web na mobilu neměl navigaci.
+          Výška se animuje přes grid-template-rows (0fr → 1fr), ne přes
+          `hidden`/display:none, aby to šlo plynule vysunout, ne jen
+          naskočit. Položky pak najíždí zvlášť se zpožděním (stagger),
+          ať otevření nepůsobí jako jedna plochá deska. */}
       <div
         id="mobilni-menu"
-        hidden={!menuOpen}
-        className="relative border-t border-cream/10 bg-night-950/95 backdrop-blur-md lg:hidden"
+        inert={!menuOpen}
+        className={`grid border-t bg-night-950/95 backdrop-blur-md transition-[grid-template-rows,border-color] duration-300 ease-out lg:hidden ${
+          menuOpen ? "grid-rows-[1fr] border-cream/10" : "grid-rows-[0fr] border-transparent"
+        }`}
       >
-        <nav className="mx-auto max-w-7xl px-5 py-6 sm:px-8">
-          <ul className="flex flex-col gap-1">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="block rounded-xl px-4 py-3.5 font-serif text-2xl text-cream transition-colors hover:bg-cream/5"
+        <nav className="overflow-hidden">
+          <div className="mx-auto max-w-7xl px-5 py-6 sm:px-8">
+            <ul className="flex flex-col gap-1">
+              {navItems.map((item, i) => (
+                <li
+                  key={item.href}
+                  className={`transition-all duration-300 ease-out ${
+                    menuOpen ? "translate-y-0 opacity-100" : "-translate-y-3 opacity-0"
+                  }`}
+                  style={{ transitionDelay: menuOpen ? `${90 + i * 60}ms` : "0ms" }}
                 >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-6 flex justify-center gap-3 border-t border-cream/10 pt-6">
-            {socials
-              .filter((s) => s.href)
-              .map((s) => (
-                <SocialLink key={s.label} href={s.href!} label={s.label}>
-                  {s.path}
-                </SocialLink>
+                  <Link
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block rounded-xl px-4 py-3.5 font-brand text-2xl font-bold uppercase tracking-wide text-cream transition-colors active:bg-cream/10 hover:bg-cream/5 hover:text-turquoise"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
               ))}
+            </ul>
+
+            <div
+              className={`mt-6 flex justify-center gap-3 border-t border-cream/10 pt-6 transition-all duration-300 ease-out ${
+                menuOpen ? "translate-y-0 opacity-100" : "-translate-y-3 opacity-0"
+              }`}
+              style={{
+                transitionDelay: menuOpen ? `${90 + navItems.length * 60}ms` : "0ms",
+              }}
+            >
+              {socials
+                .filter((s) => s.href)
+                .map((s) => (
+                  <SocialLink key={s.label} href={s.href!} label={s.label}>
+                    {s.path}
+                  </SocialLink>
+                ))}
+            </div>
           </div>
         </nav>
       </div>

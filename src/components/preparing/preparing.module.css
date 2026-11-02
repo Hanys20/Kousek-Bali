@@ -19,11 +19,27 @@
 }
 .header::after {
   content: '';
+  order: 1;
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, color-mix(in srgb, var(--color-cream) 16%, transparent), transparent);
 }
 .logo { display: inline-flex; flex-shrink: 0; }
+.instagramLink {
+  order: 2;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in srgb, var(--color-cream) 20%, transparent);
+  border-radius: 999px;
+  color: var(--color-cream);
+  font-size: 12px;
+  transition: color .2s, border-color .2s;
+}
+.instagramLink:hover { color: var(--color-turquoise-light); border-color: var(--color-turquoise-light); }
 
 .hero {
   position: relative;
@@ -98,6 +114,17 @@
 }
 .button:hover { background: var(--color-cream); border-color: var(--color-cream); transform: translateY(-2px); }
 .arrowDown { transform: rotate(90deg); }
+.contact {
+  max-width: 380px;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid color-mix(in srgb, var(--color-cream) 14%, transparent);
+  color: var(--color-cream-muted);
+  font-size: 13px;
+  line-height: 1.85;
+}
+.contact a { color: var(--color-turquoise-light); white-space: nowrap; text-decoration: underline; text-underline-offset: 4px; }
+.contact a:hover { color: var(--color-cream); }
 
 .heroVisual {
   position: relative;
@@ -214,7 +241,7 @@
 
 @media (max-width: 700px) {
   .header, .hero, .footer { width: calc(100% - 48px); }
-  .header { padding-block: 26px 18px; gap: 28px; }
+  .header { padding-block: 26px 18px; gap: 16px; }
   .hero { grid-template-columns: minmax(0, 1fr); gap: 44px; padding-block: 28px 68px; }
   .heroCopy { padding-bottom: 0; }
   .titleLead { max-width: 360px; margin-bottom: 12px; font-size: clamp(29px, 7.3vw, 39px); }

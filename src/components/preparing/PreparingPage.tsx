@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { Logo } from "@/components/ui/Logo";
+import { socials } from "@/components/ui/SocialLinks";
 import styles from "./preparing.module.css";
+
+const instagram = socials.find((social) => social.label === "Instagram");
 
 const steps = [
   {
@@ -46,6 +49,12 @@ export function PreparingPage() {
         <a href="/" aria-label="Kousek Bali — úvod" className={styles.logo}>
           <Logo className="h-14 w-auto sm:h-16" />
         </a>
+        {instagram?.href && (
+          <a href={instagram.href} target="_blank" rel="noopener noreferrer" className={styles.instagramLink}>
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">{instagram.path}</svg>
+            Instagram
+          </a>
+        )}
       </header>
 
       <main>
@@ -57,6 +66,10 @@ export function PreparingPage() {
             </h1>
             <p className={styles.intro}>Mezitím se podívejte, jak si připravit kakao.</p>
             <a href="#navod" className={styles.button}>Návod na přípravu <Arrow down /></a>
+            <p className={styles.contact}>
+              Máte zájem o některý z našich produktů? Napište nám na{" "}
+              <a href="mailto:info@kousekbali.cz">info@kousekbali.cz</a>.
+            </p>
           </div>
 
           <figure className={styles.heroVisual}>

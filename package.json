@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --hostname 127.0.0.1",
+    "dev:public": "node scripts/dev-public.mjs",
     "build": "next build",
+    "postbuild": "node scripts/verify-public-build.mjs",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "wrangler deploy"
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.9",

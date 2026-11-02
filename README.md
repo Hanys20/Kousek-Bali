@@ -64,6 +64,38 @@ supabase/
 
 ## Vývoj
 
+### Dočasná veřejná stránka a soukromý vývoj
+
+Web je nyní rozdělený už při sestavení. Běžné `npm run build` vygeneruje
+do `out/` **jen stránku „Připravujeme“ s návodem na kakao**. Původní homepage,
+košík ani ostatní podstránky se neexportují. Také návštěvník se starým odkazem
+uvidí oznámení s návodem (stav 404). Nejde o skrývání přes CSS nebo heslo
+uložené v prohlížeči; rozpracované stránky na veřejném serveru vůbec nejsou.
+
+- **Vývoj celého webu:** `npm run dev` → <http://127.0.0.1:3000>.
+  Server naslouchá jen na tomto počítači. Nepotřebuješ heslo a průběžné
+  změny se zobrazují automaticky. Vývojový port nevystavuj přes veřejný tunel.
+  Pokud je Supabase nedostupné, lokální náhled použije dva označené ukázkové
+  produkty, takže lze dál pracovat na vzhledu. Produkční e-shop náhradu nepoužívá.
+- **Úpravy veřejné stránky:** `npm run dev:public` → <http://127.0.0.1:3001>.
+  Oba náhledy lze mít otevřené současně; používají oddělenou Next.js cache.
+- **Nasazení:** `npm run deploy` nejprve vytvoří a zkontroluje veřejný build,
+  pak ho nahraje do stávajícího Cloudflare Workeru. Vyžaduje platné přihlášení
+  přes `npx wrangler login`. Stávající automatické nasazení po pushi na `main`
+  také publikuje pouze dočasnou stránku, i když současně vyvíjíš e-shop.
+- **Spuštění celého webu později:** v Cloudflare nastavit build proměnnou
+  `SITE_MODE=full` a spustit nové nasazení. Do té doby ji nenastavovat.
+  Lokální vývoj celého webu ji nepotřebuje.
+
+Veřejný návrh a texty jsou v `src/components/preparing/PreparingPage.tsx`,
+styly v `preparing.module.css`. Vstupní soubory `src/app/*.public.tsx` jsou
+vybrané přes `pageExtensions` v `next.config.ts`; ostatní stránky zůstávají
+pro lokální vývoj. Kontrola `postbuild` odmítne export s jinými stránkami.
+Ikony jsou vybrané přímo z dodaného `Příprava kakaa.svg`; při změně podkladu
+je lze znovu připravit skriptem `python scripts/extract-preparation-icons.py`.
+
+### Běžný vývoj
+
 ```bash
 npm run dev
 ```

@@ -7,7 +7,8 @@
   // Žádný server-side kód tu neběží — objednávky a platby řeší
   // Supabase edge funkce, ne tento Worker.
   "assets": {
-    "directory": "./out"
+    "directory": "./out",
+    "not_found_handling": "404-page"
   },
   // preview URL na *.workers.dev necháváme zapnutou jako záložní adresu
   "workers_dev": true,

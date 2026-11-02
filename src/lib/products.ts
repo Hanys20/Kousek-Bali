@@ -29,6 +29,11 @@ export async function getProducts(): Promise<Product[]> {
     .order("sort_order", { ascending: true });
 
   if (error) {
+    if (process.env.NODE_ENV === "development") {
+      console.warn("Supabase je nedostupné. Lokální náhled používá ukázkové produkty.");
+      const { previewProducts } = await import("./preview-products");
+      return previewProducts;
+    }
     throw new Error(`Nepodařilo se načíst produkty ze Supabase: ${error.message}`);
   }
 

@@ -12,30 +12,35 @@
 }
 
 .header {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 48px;
+  gap: 32px;
   padding-block: 34px 24px;
 }
 .header::after {
   content: '';
-  order: 1;
-  flex: 1;
+  grid-column: 2;
+  grid-row: 1;
   height: 1px;
   background: linear-gradient(90deg, color-mix(in srgb, var(--color-cream) 16%, transparent), transparent);
 }
-.logo { display: inline-flex; flex-shrink: 0; }
+.logo { display: inline-flex; grid-column: 1; grid-row: 1; justify-self: start; min-width: 0; }
 .instagramLink {
-  order: 2;
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
   display: inline-flex;
-  flex-shrink: 0;
+  width: max-content;
+  white-space: nowrap;
   align-items: center;
   gap: 9px;
   min-height: 44px;
   padding: 10px 14px;
-  border: 1px solid color-mix(in srgb, var(--color-cream) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-turquoise-light) 40%, transparent);
   border-radius: 999px;
-  color: var(--color-cream);
+  color: var(--color-turquoise-light);
+  background: color-mix(in srgb, var(--color-turquoise-light) 8%, transparent);
   font-size: 12px;
   transition: color .2s, border-color .2s;
 }
@@ -125,6 +130,7 @@
 }
 .contact a { color: var(--color-turquoise-light); white-space: nowrap; text-decoration: underline; text-underline-offset: 4px; }
 .contact a:hover { color: var(--color-cream); }
+.mobileInstagram { display: none; }
 
 .heroVisual {
   position: relative;
@@ -241,7 +247,21 @@
 
 @media (max-width: 700px) {
   .header, .hero, .footer { width: calc(100% - 48px); }
-  .header { padding-block: 26px 18px; gap: 16px; }
+  .header { grid-template-columns: minmax(0, 1fr) auto; padding-block: 26px 18px; gap: 16px; }
+  .header::after { display: none; }
+  .instagramLink { grid-column: 2; }
+  .mobileInstagram {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    margin-top: 10px;
+    color: var(--color-turquoise-light);
+    font-size: 13px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .mobileInstagram:hover { color: var(--color-cream); }
   .hero { grid-template-columns: minmax(0, 1fr); gap: 44px; padding-block: 28px 68px; }
   .heroCopy { padding-bottom: 0; }
   .titleLead { max-width: 360px; margin-bottom: 12px; font-size: clamp(29px, 7.3vw, 39px); }

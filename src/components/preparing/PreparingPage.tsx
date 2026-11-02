@@ -70,6 +70,11 @@ export function PreparingPage() {
               Máte zájem o některý z našich produktů? Napište nám na{" "}
               <a href="mailto:info@kousekbali.cz">info@kousekbali.cz</a>.
             </p>
+            {instagram?.href && (
+              <a href={instagram.href} target="_blank" rel="noopener noreferrer" className={styles.mobileInstagram}>
+                @kousekbali na Instagramu <Arrow />
+              </a>
+            )}
           </div>
 
           <figure className={styles.heroVisual}>

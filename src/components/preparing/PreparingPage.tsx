@@ -1,38 +1,32 @@
 import Image from "next/image";
 import { Logo } from "@/components/ui/Logo";
-import { Icon } from "@/components/ui/Icon";
 import styles from "./preparing.module.css";
 
 const steps = [
   {
     icon: "odvaz",
-    title: "Odvaž a nakrájej",
-    lead: "30–40 g kakaa na jeden hrnek.",
-    text: "Nakrájej ho na menší kousky a v rendlíku rozpusť s trochou vody.",
+    title: "Odvažte kakao",
+    text: "Na jeden hrnek použijte 30–40 g kakaa. Nakrájejte ho na menší kousky a dejte do rendlíku s trochou vody.",
   },
   {
     icon: "zahrej",
-    title: "Zahřívej pomalu",
-    lead: "Mírný oheň, maximálně 70 °C.",
-    text: "Kakao nech jen jemně prohřát, ne vařit. Zachová si tak svou chuť i cenné látky.",
+    title: "Pomalu zahřejte",
+    text: "Zahřívejte na mírném ohni, maximálně na 70 °C. Kakao by se nemělo vařit.",
   },
   {
     icon: "mleko",
-    title: "Přilij mléko",
-    lead: "150–200 ml tvého oblíbeného.",
-    text: "Třeba ovesného. Přidávej ho k rozpuštěnému kakau a všechno důkladně promíchej.",
+    title: "Přidejte mléko",
+    text: "Přilijte 150–200 ml oblíbeného mléka, například ovesného, a důkladně promíchejte.",
   },
   {
     icon: "vyslehej",
-    title: "Vyšlehej do pěny",
-    lead: "Malý detail, velká radost.",
-    text: "Pro jemnou pěnu kakao vyšlehej metličkou, mixérem nebo tradičním molinillem.",
+    title: "Vyšlehejte",
+    text: "Pro jemnou pěnu použijte metličku, mixér nebo tradiční molinillo.",
   },
   {
     icon: "dochut",
-    title: "Dolaď podle sebe",
-    lead: "Přesně tak, jak ho máš rád.",
-    text: "Kokosovým cukrem, medem, skořicí nebo špetkou soli. A teď už jen svůj oblíbený hrnek.",
+    title: "Dochuťte",
+    text: "Podle chuti přidejte kokosový cukr, med, skořici nebo špetku soli.",
   },
 ];
 
@@ -52,51 +46,27 @@ export function PreparingPage() {
         <a href="/" aria-label="Kousek Bali — úvod" className={styles.logo}>
           <Logo className="h-14 w-auto sm:h-16" />
         </a>
-        <span className={styles.headerNote}>Ze srdce do srdce.</span>
       </header>
 
       <main>
         <section className={styles.hero} aria-labelledby="pripravujeme">
           <div className={styles.heroCopy}>
-            <p className={styles.eyebrow}><span className={styles.statusDot} />Náš web ještě zraje</p>
             <h1 id="pripravujeme" className={styles.title}>
-              Připravujeme<br />pro vás náš<br /><span>šťavnatý<br className={styles.mobileBreak} /> kakaový web.</span>
+              Připravujeme pro vás web plný <span>kakaových dobrot.</span>
             </h1>
-            <p className={styles.intro}>Mícháme příběhy, ladíme chutě a chystáme místo,<br className={styles.desktopBreak} /> kde vám bude dobře. Už brzy vás pozveme dál.</p>
-            <a href="#navod" className={styles.button}>Mezitím si připrav kakao <Arrow down /></a>
+            <p className={styles.intro}>Mezitím se podívejte, jak si připravit kakao.</p>
+            <a href="#navod" className={styles.button}>Návod na přípravu <Arrow down /></a>
           </div>
 
           <figure className={styles.heroVisual}>
             <div className={styles.photoFrame}>
-              <Image src="/images/salek-kakaa.webp" alt="Hrnek napěněného kakaa s okvětními lístky v klidné balijské atmosféře" fill priority sizes="(max-width: 700px) 90vw, 43vw" className={styles.photo} />
+              <Image src="/images/pripravujeme-fotka.webp" alt="Společná fotografie u moře s útesy v pozadí" fill preload sizes="(max-width: 700px) 90vw, 340px" className={styles.photo} />
             </div>
-            <span className={styles.photoLabel}>Kousek Bali. Už teď ve tvém hrnku.</span>
-            <div className={styles.photoSeal} aria-hidden="true"><Icon name="kakao" className="size-8" /><span>Malá chvíle.<br />Velký prožitek.</span></div>
           </figure>
         </section>
 
         <section id="navod" className={styles.recipe} aria-labelledby="navod-title">
-          <div className={styles.recipeHeading}>
-            <div>
-              <p className={styles.eyebrow}>Web ještě není. Kakao už být může.</p>
-              <h2 id="navod-title" className={styles.sectionTitle}>Tvůj malý<br /><span>kakaový rituál.</span></h2>
-            </div>
-            <p className={styles.recipeIntro}>Než se tu zabydlí celý náš příběh, dopřej si jeho první doušek. Stačí jeden hrnek a pár minut jen pro sebe.</p>
-          </div>
-
-          <div className={styles.recipeBody}>
-            <aside className={styles.ingredients} aria-label="Na jeden hrnek si připrav">
-              <Icon name="hrnek" className="size-16 text-turquoise-light" />
-              <h3 className={styles.ingredientsTitle}>Na jeden hrnek</h3>
-              <ul>
-                <li><strong>30–40 g</strong><span>kakaa</span></li>
-                <li><strong>Trochu</strong><span>vody na rozpuštění</span></li>
-                <li><strong>150–200 ml</strong><span>oblíbeného mléka</span></li>
-                <li><strong>Podle chuti</strong><span>něco na doladění</span></li>
-              </ul>
-              <p>A hlavně nikam nespěchej.</p>
-            </aside>
-
+          <h2 id="navod-title" className={styles.sectionTitle}>Jak si připravit kakao</h2>
             <ol className={styles.steps}>
               {steps.map((step, index) => (
                 <li key={step.icon} className={styles.step}>
@@ -104,22 +74,16 @@ export function PreparingPage() {
                   <span aria-hidden="true" className={styles.stepIcon} style={{ maskImage: `url(/icons/priprava-${step.icon}.svg)`, WebkitMaskImage: `url(/icons/priprava-${step.icon}.svg)` }} />
                   <div>
                     <h3 className={styles.stepTitle}>{step.title}</h3>
-                    <p className={styles.stepText}><strong>{step.lead}</strong> {step.text}</p>
+                    <p className={styles.stepText}>{step.text}</p>
                   </div>
                 </li>
               ))}
             </ol>
-          </div>
-
-          <div className={styles.closing}>
-            <Icon name="slunce" className="size-10 text-turquoise-light" />
-            <p>Pak už si jen dopřej chvíli přítomnosti<br />a pozvi do svého srdce <span>kousek Bali.</span></p>
-          </div>
         </section>
       </main>
 
       <footer className={styles.footer}>
-        <span>Kousek Bali <span aria-hidden="true">·</span> Ze srdce do srdce.</span>
+        <span>Kousek Bali</span>
         <a href="mailto:info@kousekbali.cz">info@kousekbali.cz <Arrow /></a>
       </footer>
     </div>

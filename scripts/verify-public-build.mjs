@@ -26,7 +26,7 @@ for (const file of files) {
 
 for (const name of ["index.html", "404.html"]) {
   const html = await readFile(`out/${name}`, "utf8");
-  assert(html.includes("šťavnatý"), `${name}: chybí oznámení připravovaného webu.`);
+  assert(html.includes("kakaových dobrot"), `${name}: chybí oznámení připravovaného webu.`);
   assert(html.includes("70 °C"), `${name}: chybí teplota podle dodaného návodu.`);
   assert(!html.includes("supabase.co"), `${name}: veřejná stránka načítá rozpracovaný e-shop.`);
   for (const icon of ["odvaz", "zahrej", "mleko", "vyslehej", "dochut"]) {

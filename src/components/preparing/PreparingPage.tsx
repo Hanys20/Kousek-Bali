@@ -52,7 +52,8 @@ export function PreparingPage() {
         <section className={styles.hero} aria-labelledby="pripravujeme">
           <div className={styles.heroCopy}>
             <h1 id="pripravujeme" className={styles.title}>
-              Připravujeme pro vás web plný <span>kakaových dobrot.</span>
+              <span className={styles.titleLead}>Připravujeme pro vás web plný</span>{" "}
+              <span className={styles.titleAccent}>kakaových dobrot.</span>
             </h1>
             <p className={styles.intro}>Mezitím se podívejte, jak si připravit kakao.</p>
             <a href="#navod" className={styles.button}>Návod na přípravu <Arrow down /></a>
@@ -60,18 +61,24 @@ export function PreparingPage() {
 
           <figure className={styles.heroVisual}>
             <div className={styles.photoFrame}>
-              <Image src="/images/pripravujeme-fotka.webp" alt="Společná fotografie u moře s útesy v pozadí" fill preload sizes="(max-width: 700px) 90vw, 340px" className={styles.photo} />
+              <Image src="/images/pripravujeme-fotka.webp" alt="Společná fotografie u moře s útesy v pozadí" fill preload sizes="(max-width: 700px) 90vw, (max-width: 1000px) 40vw, 430px" className={styles.photo} />
             </div>
           </figure>
         </section>
 
         <section id="navod" className={styles.recipe} aria-labelledby="navod-title">
-          <h2 id="navod-title" className={styles.sectionTitle}>Jak si připravit kakao</h2>
+          <div className={styles.recipeInner}>
+            <div className={styles.recipeHeading}>
+              <h2 id="navod-title" className={styles.sectionTitle}>Jak si připravit kakao</h2>
+              <span aria-hidden="true" className={styles.recipeIllustration} />
+            </div>
             <ol className={styles.steps}>
               {steps.map((step, index) => (
                 <li key={step.icon} className={styles.step}>
                   <span className={styles.stepNumber}>0{index + 1}</span>
-                  <span aria-hidden="true" className={styles.stepIcon} style={{ maskImage: `url(/icons/priprava-${step.icon}.svg)`, WebkitMaskImage: `url(/icons/priprava-${step.icon}.svg)` }} />
+                  <div className={styles.stepArtwork}>
+                    <span aria-hidden="true" className={styles.stepIcon} style={{ maskImage: `url(/icons/priprava-${step.icon}.svg)`, WebkitMaskImage: `url(/icons/priprava-${step.icon}.svg)` }} />
+                  </div>
                   <div>
                     <h3 className={styles.stepTitle}>{step.title}</h3>
                     <p className={styles.stepText}>{step.text}</p>
@@ -79,6 +86,7 @@ export function PreparingPage() {
                 </li>
               ))}
             </ol>
+          </div>
         </section>
       </main>
 
